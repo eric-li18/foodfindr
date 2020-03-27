@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "768996724623",
+    "firebase_url": "https://food-findr.firebaseio.com",
+    "project_id": "food-findr",
+    "storage_bucket": "food-findr.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:768996724623:android:94f9639c19dff917e585fa",
+        "android_client_info": {
+          "package_name": "com.utsc.project.foodfindr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "768996724623-6p7tfm1grop4qv36mlhse7oaeq8m00lf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.utsc.project.foodfindr",
+            "certificate_hash": "a5403544fd1dce565a5868c9361c108977b08f2f"
+          }
+        },
+        {
+          "client_id": "768996724623-7cmun3s5ndgt6iahtah3njk9p9f7fbb9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWeHufAiC4PjjtdY53y5fz-eHI6lPt2ZM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "768996724623-7cmun3s5ndgt6iahtah3njk9p9f7fbb9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "768996724623-fe3socmqr4lu65gpsn8befs3698lqge8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.utsc.project.foodfindr"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
