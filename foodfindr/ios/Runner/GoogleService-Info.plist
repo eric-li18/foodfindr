@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>768996724623-fe3socmqr4lu65gpsn8befs3698lqge8.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.768996724623-fe3socmqr4lu65gpsn8befs3698lqge8</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCihmJg5_45NPNalttem05i_faKFgsI_ek</string>
+	<key>GCM_SENDER_ID</key>
+	<string>768996724623</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.utsc.project.foodfindr</string>
+	<key>PROJECT_ID</key>
+	<string>food-findr</string>
+	<key>STORAGE_BUCKET</key>
+	<string>food-findr.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:768996724623:ios:09c878281a4d2cb5e585fa</string>
+	<key>DATABASE_URL</key>
+	<string>https://food-findr.firebaseio.com</string>
+</dict>
+</plist>
