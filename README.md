@@ -1,6 +1,9 @@
 # foodfindr
+An application built from the all-too-familiar problem of deciding where to eat.
 
-A new Flutter project.
+## Installation A new Flutter project.
+Flutter has comprehensive documentation on how to get started with your system of choice.   
+- [Install](https://flutter.dev/docs/get-started/install)
 
 ## Getting Started
 
