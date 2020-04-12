@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodfindr/screens/authenticate/sign_in.dart';
+import 'package:foodfindr/screens/authenticate/register.dart';
 
 class Authenticate extends StatefulWidget {
   @override

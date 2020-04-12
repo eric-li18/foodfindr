@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:foodfindr/services/auth.dart';
 
-class SignIn extends StatefulWidget {
+
+class Register extends StatefulWidget {
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
   String email = '';
   String password = '';
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
         backgroundColor: Colors.brown[600],
