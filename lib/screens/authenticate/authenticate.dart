@@ -8,10 +8,14 @@ class Authenticate extends StatefulWidget {
 }
 
 class _AuthenticateState extends State<Authenticate> {
+  
+  bool showSignedin = true;
+  void toggleSignedIn (){
+    setState(() => showSignedin = !showSignedin);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: SignIn(),
-    );
+    return showSignedin ? SignIn(toggleSignedIn: toggleSignedIn) : Register(toggleSignedIn: toggleSignedIn);
   }
 }
