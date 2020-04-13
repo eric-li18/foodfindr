@@ -10,9 +10,14 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+
   final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
+  
   String email = '';
   String password = '';
+  String error = '';
+  
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -20,13 +25,15 @@ class _SignInState extends State<SignIn> {
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
         child: Form(
+          key: _formKey,
           child : Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                "Register a new account",
+                "Sign in to your account",
               ),
               TextFormField(
+                validator: (value) => value.isEmpty ? "Enter an email" : null,
                 decoration: InputDecoration(
                   hintText: "Email"
                 ),
@@ -36,6 +43,7 @@ class _SignInState extends State<SignIn> {
               ), 
               SizedBox(height: 20.0),
               TextFormField(
+                validator: (value) => value.length < 6 ? "Enter a password 6+ characters long" : null,
                 decoration: InputDecoration(
                   hintText: "Password"
                 ),
@@ -44,7 +52,9 @@ class _SignInState extends State<SignIn> {
                 },
                 obscureText: true,
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 10.0),
+              Text(error),
+              SizedBox(height: 10.0),
               FlatButton(
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(18.0),
@@ -57,10 +67,13 @@ class _SignInState extends State<SignIn> {
                     color: Colors.white,
                   ),
                 ),
-                onPressed: (){
-                  AuthService().signInAnon();
-                  print(email);
-                  print(password);
+                onPressed: () async {
+                  if(_formKey.currentState.validate()){
+                    dynamic result = await _auth.signInWithEmail(email, password);
+                    if (result == null){
+                      setState(() { error = "Please supply a valid email"; });
+                    }
+                  }
                 },
               ),
               FlatButton(
