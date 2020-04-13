@@ -58,6 +58,7 @@ class _SignInState extends State<SignIn> {
                   ),
                 ),
                 onPressed: (){
+                  AuthService().signInAnon();
                   print(email);
                   print(password);
                 },
