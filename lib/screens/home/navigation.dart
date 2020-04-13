@@ -17,7 +17,7 @@ class _NavigationState extends State<Navigation> {
   Widget build(BuildContext context) {
     return Container(
       child: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
+        type: BottomNavigationBarType.fixed,
         unselectedItemColor: Colors.grey[600],
         selectedItemColor: Colors.green[400],
         iconSize: 36.0,
@@ -33,7 +33,7 @@ class _NavigationState extends State<Navigation> {
             title: Text(''),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.local_dining),
+            icon: Icon(Icons.local_dining, size: 50),
             title: Text(''),
           ),
           BottomNavigationBarItem(
