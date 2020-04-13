@@ -23,6 +23,9 @@ class _RegisterState extends State<Register> {
           child : Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              Text(
+                "Sign in to your account",
+              ),
               TextFormField(
                 decoration: InputDecoration(
                   hintText: "Email"

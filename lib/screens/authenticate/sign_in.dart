@@ -16,13 +16,16 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      backgroundColor: Colors.brown[100],
+      backgroundColor: Colors.grey[150],
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
         child: Form(
           child : Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              Text(
+                "Register a new account",
+              ),
               TextFormField(
                 decoration: InputDecoration(
                   hintText: "Email"
@@ -41,15 +44,36 @@ class _SignInState extends State<SignIn> {
                 },
                 obscureText: true,
               ),
+              SizedBox(height: 20.0),
               FlatButton(
-                child: Text("Sign in"),
+                shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(18.0),
+                  side: BorderSide(color: Colors.red)
+                ),
+                color: Colors.red,
+                child: Text(
+                  "Sign in",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
                 onPressed: (){
                   print(email);
                   print(password);
                 },
               ),
               FlatButton(
-                child: Text("Register now"),
+                 shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(18.0),
+                  side: BorderSide(color: Colors.red)
+                ),
+                color: Colors.red,
+                child: Text(
+                  "Register now",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
                 onPressed: (){
                   widget.toggleSignedIn();
                 },
