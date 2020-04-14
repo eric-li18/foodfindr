@@ -6,46 +6,46 @@ class Navigation extends StatefulWidget {
 }
 
 class _NavigationState extends State<Navigation> {
-  int _selectedIndex = 0;
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        unselectedItemColor: Colors.grey[600],
-        selectedItemColor: Colors.green[400],
-        iconSize: 36.0,
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text(''),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            title: Text(''),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.local_dining, size: 50),
-            title: Text(''),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.history),
-            title: Text(''),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            title: Text(''),
-          )
-        ],
+    return Scaffold(
+      appBar: AppBar(),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.local_dining, size: 36.0),
+        backgroundColor: Colors.green[400],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+          shape: CircularNotchedRectangle(),
+          notchMargin: 6.0,
+          child: new Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              IconButton(
+                icon: Icon(
+                  Icons.home,
+                  size: 36.0,
+                ),
+              ),
+              IconButton(
+                  icon: Icon(
+                    Icons.favorite,
+                    size: 36.0,
+                  ),
+                  padding: EdgeInsetsDirectional.only(end: 80.0)),
+              IconButton(
+                  icon: Icon(
+                Icons.history,
+                size: 38.0,
+              )),
+              IconButton(
+                  icon: Icon(
+                Icons.account_circle,
+                size: 38.0,
+              ))
+            ],
+          )),
     );
   }
 }
