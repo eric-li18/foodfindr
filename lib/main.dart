@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:foodfindr/screens/favourites/favourites.dart';
 import 'package:foodfindr/screens/history/history.dart';
@@ -7,8 +5,8 @@ import 'package:foodfindr/screens/home/home.dart';
 import 'package:foodfindr/screens/profile/profile.dart';
 import 'package:foodfindr/screens/wrapper.dart';
 import 'package:foodfindr/services/auth.dart';
+import 'package:foodfindr/models/user.dart';
 import 'package:provider/provider.dart';
-import 'models/user.dart';
 
 void main() => runApp(MyApp());
 

@@ -7,21 +7,6 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.red[600],
-        elevation: 0.0,
-        centerTitle: true,
-        title: Text('Home'),
-        actions: <Widget>[
-          FlatButton.icon(
-            onPressed: () {
-              AuthService().signOut();
-            },
-            icon: Icon(Icons.person),
-            label: Text("Logout"),
-          )
-        ],
-      ),
       bottomNavigationBar: Navigation(),
     );
   }
