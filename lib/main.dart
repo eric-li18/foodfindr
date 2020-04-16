@@ -7,7 +7,6 @@ import 'package:foodfindr/screens/wrapper.dart';
 import 'package:foodfindr/services/auth.dart';
 import 'package:foodfindr/models/user.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 
 void main() => runApp(MyApp());
 

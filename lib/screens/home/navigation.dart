@@ -37,30 +37,25 @@ class _NavigationState extends State<Navigation> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              IconButton(
-                icon: Icon(
-                  Icons.home,
-                  size: 36.0,
-                ),
-              ),
+              navIcon(Icons.home),
               IconButton(
                   icon: Icon(
                     Icons.favorite,
                     size: 36.0,
                   ),
                   padding: EdgeInsetsDirectional.only(end: 80.0)),
-              IconButton(
-                  icon: Icon(
-                Icons.history,
-                size: 38.0,
-              )),
-              IconButton(
-                  icon: Icon(
-                Icons.account_circle,
-                size: 38.0,
-              ))
+              navIcon(Icons.history),
+              navIcon(Icons.account_circle)
             ],
           )),
     );
+  }
+
+  IconButton navIcon(IconData icon) {
+    return IconButton(
+        icon: Icon(
+      icon,
+      size: 38.0,
+    ));
   }
 }
