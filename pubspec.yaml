@@ -27,6 +27,9 @@ dependencies:
   cloud_firestore: ^0.12.9+4
   provider: ^3.1.0
   flutter_facebook_login: 3.0.0
+  google_sign_in: ^4.4.1
+  flutter_signin_button: ^1.0.0
+  font_awesome_flutter: ^8.8.1
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +78,6 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
 fonts:
-  - family: Futura
+  - family: Futura Medium
     fonts:
       - asset: fonts/futuramedium.ttf
