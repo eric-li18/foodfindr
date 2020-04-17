@@ -1,4 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:foodfindr/screens/favourites/favourites.dart';
+import 'package:foodfindr/screens/history/history.dart';
+import 'package:foodfindr/screens/home/home.dart';
+import 'package:foodfindr/screens/profile/profile.dart';
 import 'package:foodfindr/services/auth.dart';
 
 class Navigation extends StatefulWidget {
@@ -9,53 +14,59 @@ class Navigation extends StatefulWidget {
 class _NavigationState extends State<Navigation> {
   @override
   Widget build(BuildContext context) {
+
+    int _currentIndex = 0;
+
+    final List<Widget> _children = [
+      Home(), 
+      Favourite(), 
+      History(), 
+      Profile()
+      ];
+
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.red[600],
-        elevation: 0.0,
-        centerTitle: true,
-        title: Text('Home'),
-        actions: <Widget>[
-          FlatButton.icon(
+      appBar: CupertinoNavigationBar(
+        trailing: FlatButton.icon(
             onPressed: () {
               AuthService().signOut();
             },
             icon: Icon(Icons.person),
             label: Text("Logout"),
-          )
-        ],
+          ),
       ),
+      body: _children[_currentIndex],
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.local_dining, size: 36.0),
-        backgroundColor: Colors.green[400],
-      ),
+            onPressed: null,
+            backgroundColor: Colors.green,
+            child: Icon(Icons.local_dining),
+          ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
           shape: CircularNotchedRectangle(),
-          notchMargin: 6.0,
-          child: new Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              navIcon(Icons.home),
-              IconButton(
-                  icon: Icon(
-                    Icons.favorite,
-                    size: 36.0,
-                  ),
-                  padding: EdgeInsetsDirectional.only(end: 80.0)),
-              navIcon(Icons.history),
-              navIcon(Icons.account_circle)
+          notchMargin: 4.0,
+          clipBehavior: Clip.antiAlias,
+          child: BottomNavigationBar(
+                type: BottomNavigationBarType.fixed,
+                iconSize: 30,
+                selectedItemColor: Colors.green,
+                unselectedItemColor: Colors.grey,
+                onTap: (int index) {
+                  setState(() {
+                  _currentIndex = index;
+                  });
+                },
+                currentIndex: _currentIndex,
+                elevation: 0,
+                backgroundColor: Colors.white,
+                items: [
+                  BottomNavigationBarItem(icon: Icon(Icons.home,), title: Text("home")),
+                  BottomNavigationBarItem(icon: Icon(Icons.favorite,),  title: Text("favs")),
+                  BottomNavigationBarItem(icon: Icon(Icons.history,), title: Text("history")),
+                  BottomNavigationBarItem(icon: Icon(Icons.account_circle,), title: Text("profile")),
             ],
-          )),
+            ),
+      ),
     );
   }
 
-  IconButton navIcon(IconData icon) {
-    return IconButton(
-        icon: Icon(
-      icon,
-      size: 38.0,
-    ));
-  }
 }

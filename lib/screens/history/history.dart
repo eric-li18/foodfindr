@@ -10,10 +10,10 @@ class History extends StatefulWidget {
 class _HistoryState extends State<History> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Text('History page')),
-      bottomNavigationBar: Navigation(),
-    );
+    return Container(
+      child: Center(
+        child: Text('This is the history page'))
+        );
+        
   }
 }

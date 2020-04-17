@@ -10,10 +10,10 @@ class Favourite extends StatefulWidget {
 class _FavouriteState extends State<Favourite> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Text('favourites page')),
-      bottomNavigationBar: Navigation(),
-    );
+    return Container(
+      child: Center(
+        child:Text('This is the favourites page')
+        )
+        );
   }
 }
