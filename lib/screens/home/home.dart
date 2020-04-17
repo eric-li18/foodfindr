@@ -18,9 +18,10 @@ class _HomePageState extends State<HomePage> {
               title: Text(
                 'FoodFindr',
                 style: TextStyle(
+                  fontFamily: 'Futura Medium',
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
-                  fontSize: 30,
+                  fontSize: 35,
                 )
               ),
               actions: <Widget>[
@@ -28,68 +29,89 @@ class _HomePageState extends State<HomePage> {
                   icon: Icon(
                     Icons.map,
                     color: Colors.black,
-                    size: 30,
+                    size: 25,
                   ),
                   onPressed: null,
                 )
               ],
               elevation: 0,
               backgroundColor: Colors.white,
-              bottom: PreferredSize(
-                child: Container(
-                  color: Colors.black, 
-                  height: 1.5,
-                ), 
-                preferredSize: Size.fromHeight(1.0)
-              ),
+              // bottom: PreferredSize(
+              //   child: Container(
+              //     color: Colors.black, 
+              //     height: 1.5,
+              //   ), 
+              //   preferredSize: Size.fromHeight(1.0)
+              // ),
             ),
 
             SliverToBoxAdapter(
               child: Container(
+                color: Colors.white,
                 child: Text(
                   'Recommended for you',
                   style: TextStyle(
+                    fontFamily: 'Futura Medium',
                     color: Colors.black,
                     fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                    // fontWeight: FontWeight.bold,
                   ),
                 ),
-                padding: EdgeInsets.only(left: 20, top: 10),
+                padding: EdgeInsets.only(left: 17, top: 10),
               )
             ),
 
             SliverToBoxAdapter(
               child: Container(
-                padding: EdgeInsets.only(left: 15),
-                height: 100.0,
+                padding: EdgeInsets.only(left: 12, top: 5),
+                height: 160,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 10,
                   itemBuilder: (BuildContext context, int index) {
                     return Container(
                       width: 150.0,
-                      color: Colors.white,
-                      child: Stack(
+                      // color: Colors.white,
+                      margin: EdgeInsets.only(left: 5, right: 5, bottom: 20),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          new BoxShadow( 
+                            color: Colors.grey[300],
+                            offset: new Offset(0.0, 5.0), 
+                            blurRadius: 5.0,
+                            spreadRadius: 1.0
+                          )
+                        ],
+                      ),
+                      child: Column(
                         children: <Widget> [
                           Container(
-                            padding: EdgeInsets.only(top: 10, left: 5, right: 5),
-                            color: Colors.white,
+                            height: 110,
+                            // margin: EdgeInsets.only(left: 5, right: 5),
                             alignment: Alignment.center,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: FittedBox(
-                                child: Image.asset('assets/Sky.jpg'),
-                                fit: BoxFit.fill,
+                            decoration: ShapeDecoration(
+                              image: DecorationImage(
+                                image: ExactAssetImage(
+                                  'assets/Watermelon.jpg'
+                                ),
+                                fit: BoxFit.cover
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadiusDirectional.circular(10)
                               )
-                            )
+                            ),
                           ),
                           Container(
-                            alignment: Alignment.center,
+                            padding: EdgeInsets.only(top: 5, left: 10),
+                            alignment: Alignment.bottomLeft,
                             child: Text(
-                              'Pizza Hut',
+                              'Watermelon Sugar',
                               style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 18,
+                                fontFamily: 'Futura Medium',
+                                fontSize: 13,
                               ),
                             ),
                           ),
@@ -103,45 +125,64 @@ class _HomePageState extends State<HomePage> {
 
             SliverToBoxAdapter(
               child: Container(
+                color: Colors.white,
                 child: Text(
                   'What\'s Nearby',
                   style: TextStyle(
+                    fontFamily: 'Futura Medium',
                     color: Colors.black,
                     fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                    // fontWeight: FontWeight.bold,
                   ),
                 ),
-                padding: EdgeInsets.only(left: 20, top: 10),
+                padding: EdgeInsets.only(left: 17, bottom: 5),
               )
             ),
 
             SliverFixedExtentList(
-              itemExtent: 230.0,
+              itemExtent: 250,
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
                   return Container(
-                    color: Colors.white,
-                    child: Stack(
+                    margin: EdgeInsets.only(left: 15, right: 15, bottom: 19),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        new BoxShadow( 
+                          color: Colors.grey[300],
+                          offset: new Offset(0.0, 10.0), 
+                          blurRadius: 10.0,
+                          spreadRadius: 1.0
+                        )
+                      ],
+                    ),
+                    child: Column(
                       children: <Widget> [
                         Container(
-                          padding: EdgeInsets.only(top:10, left: 20, right: 20),
-                          color: Colors.white,
+                          height: 200,
                           alignment: Alignment.center,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(18),
-                            child: FittedBox(
-                              child: Image.asset('assets/Something.png'),
-                              fit: BoxFit.fill,
+                          decoration: ShapeDecoration(
+                            image: DecorationImage(
+                              image: ExactAssetImage(
+                                'assets/Ramen.jpg'
+                              ),
+                              fit: BoxFit.cover
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadiusDirectional.circular(10)
                             )
-                          )
+                          ),
                         ),
                         Container(
-                          alignment: Alignment.center,
+                          padding: EdgeInsets.only(left: 10, top: 5),
+                          alignment: Alignment.bottomLeft,
                           child: Text(
                             'Sushi Tien',
                             style: TextStyle(
+                              fontFamily: 'Futura Medium',
                               color: Colors.black,
-                              fontSize: 20,
+                              fontSize: 15,
                             ),
                           ),
                         ),
