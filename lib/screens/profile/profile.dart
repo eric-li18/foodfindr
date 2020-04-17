@@ -12,8 +12,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Text('favourites page')),
-      bottomNavigationBar: Navigation(),
+        child: Center(child: Text('favourites page'))),
     );
   }
 }

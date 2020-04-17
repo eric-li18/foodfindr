@@ -12,61 +12,82 @@ class Navigation extends StatefulWidget {
 }
 
 class _NavigationState extends State<Navigation> {
+  int _currentIndex = 0;
+
+  List<Widget> _children = <Widget>[
+    HomePage(),
+    Favourite(),
+    History(),
+    Profile()
+  ];
+  void onItemTapped(index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-
-    int _currentIndex = 0;
-
-    final List<Widget> _children = [
-      HomePage(), 
-      Favourite(), 
-      History(), 
-      Profile()
-      ];
-
     return Scaffold(
       appBar: CupertinoNavigationBar(
         trailing: FlatButton.icon(
-            onPressed: () {
-              AuthService().signOut();
-            },
-            icon: Icon(Icons.person),
-            label: Text("Logout"),
-          ),
+          onPressed: () {
+            AuthService().signOut();
+          },
+          icon: Icon(Icons.person),
+          label: Text("Logout"),
+        ),
       ),
-      body: _children[_currentIndex],
+      body: _children.elementAt(_currentIndex),
       floatingActionButton: FloatingActionButton(
-            onPressed: null,
-            backgroundColor: Colors.green,
-            child: Icon(Icons.local_dining),
-          ),
+        onPressed: null,
+        backgroundColor: Colors.green,
+        child: Icon(
+          Icons.local_dining,
+          size: 36,
+        ),
+        elevation: 0,
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-          shape: CircularNotchedRectangle(),
-          notchMargin: 4.0,
-          clipBehavior: Clip.antiAlias,
-          child: BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                iconSize: 30,
-                selectedItemColor: Colors.green,
-                unselectedItemColor: Colors.grey,
-                onTap: (int index) {
-                  setState(() {
-                  _currentIndex = index;
-                  });
-                },
-                currentIndex: _currentIndex,
-                elevation: 0,
-                backgroundColor: Colors.white,
-                items: [
-                  BottomNavigationBarItem(icon: Icon(Icons.home,), title: Text("home")),
-                  BottomNavigationBarItem(icon: Icon(Icons.favorite,),  title: Text("favs")),
-                  BottomNavigationBarItem(icon: Icon(Icons.history,), title: Text("history")),
-                  BottomNavigationBarItem(icon: Icon(Icons.account_circle,), title: Text("profile")),
-            ],
-            ),
+        shape: CircularNotchedRectangle(),
+        notchMargin: 8.0,
+        clipBehavior: Clip.antiAlias,
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          iconSize: 30,
+          selectedItemColor: Colors.green[400],
+          unselectedItemColor: Colors.grey,
+          selectedFontSize: 12,
+          unselectedFontSize: 12,
+          onTap: onItemTapped,
+          currentIndex: _currentIndex,
+          elevation: 0,
+          backgroundColor: Colors.white,
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.home,
+                ),
+                title: Text("home")),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.favorite,
+                ),
+                title: Text("favs")),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.history,
+                ),
+                title: Text("history")),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.account_circle,
+                ),
+                title: Text("profile")),
+          ],
+        ),
       ),
     );
   }
-
 }

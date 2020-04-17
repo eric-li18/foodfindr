@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:foodfindr/screens/home/navigation.dart';
+//import 'package:foodfindr/screens/home/navigation.dart';
 
 class Favourite extends StatefulWidget {
   @override
@@ -10,10 +10,8 @@ class Favourite extends StatefulWidget {
 class _FavouriteState extends State<Favourite> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child:Text('This is the favourites page')
-        )
-        );
+    return MaterialApp(
+      home: Center(child: Scaffold(body: Center(child: Text('Favourites')),)),
+    );
   }
 }
