@@ -22,7 +22,7 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[150],
+      backgroundColor: Colors.white,
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
         child: Form(
@@ -33,23 +33,7 @@ class _SignInState extends State<SignIn> {
                 Text(
                   "Sign in to your account",
                 ),
-                TextFormField(
-                  validator: (value) => value.isEmpty ? "Enter an email" : null,
-                  decoration: InputDecoration(hintText: "Email"),
-                  onChanged: (value) {
-                    setState(() => email = value.trim());
-                  },
-                ),
-                SizedBox(height: 20.0),
-                TextFormField(
-                  validator: (value) =>
-                      value.isEmpty ? "Enter a password" : null,
-                  decoration: InputDecoration(hintText: "Password"),
-                  onChanged: (value) {
-                    setState(() => password = value);
-                  },
-                  obscureText: true,
-                ),
+                emailAndPasswordForms(),
                 SizedBox(height: 10.0),
                 Text(error),
                 SizedBox(height: 10.0),
@@ -118,35 +102,61 @@ class _SignInState extends State<SignIn> {
                 SizedBox(height: 20.0),
                 Row(
                   children: <Widget>[
-                    Expanded(child:SizedBox(width:1.0)), 
+                    Expanded(child: SizedBox(width: 1.0)),
                     SignInButton(Buttons.Facebook, mini: true, onPressed: () {
                       AuthService().signInWithFacebook();
                     }),
                     // RaisedButton.icon(icon: FaIcon(FontAwesomeIcons.google), onPressed: () {print("hello");},)
-                    Expanded(child:SizedBox(width:1.0)), 
+                    Expanded(child: SizedBox(width: 1.0)),
                     SizedBox.fromSize(
                       size: Size(40, 40),
                       child: ClipOval(
                         child: Material(
-                          color: Colors.grey[850], 
+                          color: Colors.grey[850],
                           child: InkWell(
-                            onTap: () {AuthService().signInWithGoogle();}, 
+                            onTap: () {
+                              AuthService().signInWithGoogle();
+                            },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                FaIcon(FontAwesomeIcons.google,color:Colors.white),
+                                FaIcon(FontAwesomeIcons.google,
+                                    color: Colors.white),
                               ],
                             ),
                           ),
                         ),
                       ),
                     ),
-                    Expanded(child:SizedBox(width:1.0)), 
+                    Expanded(child: SizedBox(width: 1.0)),
                   ],
                 ),
               ]),
         ),
       ),
     );
+  }
+
+  Container emailAndPasswordForms() {
+    return Container(
+        child: Column(children: <Widget>[
+      TextFormField(
+        validator: (value) => value.isEmpty ? "Enter an email" : null,
+        decoration: InputDecoration(hintText: "Email"),
+        onChanged: (value) {
+          setState(() => email = value.trim());
+        },
+      ),
+      SizedBox(height: 20.0),
+      TextFormField(
+        validator: (value) =>
+            value.isEmpty ? "Enter a password" : null,
+        decoration: InputDecoration(hintText: "Password"),
+        onChanged: (value) {
+          setState(() => password = value);
+        },
+        obscureText: true,
+      )
+    ]));
   }
 }
