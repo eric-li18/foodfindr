@@ -42,20 +42,47 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
     
-    <!-- Google Sign-in Section -->
     <key>CFBundleURLTypes</key>
     <array>
-        <dict>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <!-- TODO Replace this value: -->
-                <!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
-                <string>com.googleusercontent.apps.768996724623-fe3socmqr4lu65gpsn8befs3698lqge8</string>
-            </array>
-        </dict>
+      <dict>
+          <key>CFBundleTypeRole</key>
+          <string>Editor</string>
+          <key>CFBundleURLSchemes</key>
+          <array>
+              <!-- TODO Replace this value: -->
+              <!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
+              <string>com.googleusercontent.apps.768996724623-fe3socmqr4lu65gpsn8befs3698lqge8</string>
+          </array>
+      </dict>
+      <dict>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>fb305896497058188</string>
+      </array>
+      </dict>
     </array>
-    <!-- End of the Google Sign-in Section -->
+    <key>FacebookAppID</key>
+    <string>305896497058188</string>
+    <key>FacebookDisplayName</key>
+    <string>foodfindr</string>
+
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>fbapi</string>
+      <string>fbapi20130214</string>
+      <string>fbapi20130410</string>
+      <string>fbapi20130702</string>
+      <string>fbapi20131010</string>
+      <string>fbapi20131219</string>
+      <string>fbapi20140410</string>
+      <string>fbapi20140116</string>
+      <string>fbapi20150313</string>
+      <string>fbapi20150629</string>
+      <string>fbapi20160328</string>
+      <string>fbauth</string>
+      <string>fb-messenger-share-api</string>
+      <string>fbauth2</string>
+      <string>fbshareextension</string>
+    </array>
 </dict>
 </plist>
