@@ -18,7 +18,7 @@ class _NavigationState extends State<Navigation> {
     int _currentIndex = 0;
 
     final List<Widget> _children = [
-      Home(), 
+      HomePage(), 
       Favourite(), 
       History(), 
       Profile()
