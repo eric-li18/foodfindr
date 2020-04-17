@@ -10,8 +10,6 @@ class Favourite extends StatefulWidget {
 class _FavouriteState extends State<Favourite> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Center(child: Scaffold(body: Center(child: Text('Favourites')),)),
-    );
+    return Center(child: Scaffold(body: Center(child: Text('Favourites')),));
   }
 }

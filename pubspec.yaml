@@ -30,6 +30,8 @@ dependencies:
   google_sign_in: ^4.4.1
   flutter_signin_button: ^1.0.0
   font_awesome_flutter: ^8.8.1
+  flutter_speed_dial_material_design: ^1.2.0
+  flutter_speed_dial: ^1.2.5
 
 dev_dependencies:
   flutter_test:

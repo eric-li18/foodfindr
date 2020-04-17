@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:foodfindr/screens/home/navigation.dart';
+import 'package:foodfindr/services/auth.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -13,6 +14,8 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       body: SafeArea(
         child: Center(child: Text('favourites page'))),
+        floatingActionButton: FloatingActionButton(onPressed: () {AuthService().signOut();},),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 }

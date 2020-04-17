@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial_material_design/flutter_speed_dial_material_design.dart';
 import 'package:foodfindr/screens/favourites/favourites.dart';
 import 'package:foodfindr/screens/history/history.dart';
 import 'package:foodfindr/screens/home/home.dart';
@@ -26,6 +27,16 @@ class _NavigationState extends State<Navigation> {
     });
   }
 
+
+  PageController _c;
+  @override
+  void initState(){
+    _c =  new PageController(
+      initialPage: _currentIndex,
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,16 +49,26 @@ class _NavigationState extends State<Navigation> {
           label: Text("Logout"),
         ),
       ),
-      body: _children.elementAt(_currentIndex),
-      floatingActionButton: FloatingActionButton(
-        onPressed: null,
-        backgroundColor: Colors.green,
-        child: Icon(
-          Icons.local_dining,
-          size: 36,
-        ),
-        elevation: 0,
+      body: new PageView(
+        controller: _c,
+        onPageChanged: (newPage){
+          setState((){
+            this._currentIndex=newPage;
+          });
+        },
+        children: _children,
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: null,
+      //   backgroundColor: Colors.green,
+      //   child: Icon(
+      //     Icons.local_dining,
+      //     size: 36,
+      //   ),
+      //   elevation: 0,
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: _buildFloatingActionButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
@@ -60,7 +81,9 @@ class _NavigationState extends State<Navigation> {
           unselectedItemColor: Colors.grey,
           selectedFontSize: 12,
           unselectedFontSize: 12,
-          onTap: onItemTapped,
+          onTap: (index){
+          _c.animateToPage(index,duration: const Duration(milliseconds: 500),curve: Curves.easeInOut);
+        },
           currentIndex: _currentIndex,
           elevation: 0,
           backgroundColor: Colors.white,
@@ -90,4 +113,26 @@ class _NavigationState extends State<Navigation> {
       ),
     );
   }
+}
+
+Widget _buildFloatingActionButton() {
+    final TextStyle customStyle = TextStyle(inherit: false, color: Colors.black);
+    final icons = [
+      SpeedDialAction(child: Icon(Icons.mode_edit, color: Colors.grey), label: Text('sample text', style: customStyle,)),
+      SpeedDialAction(child: Icon(Icons.date_range, color: Colors.grey), label: Text('sample text', style: customStyle,)),
+      SpeedDialAction(child: Icon(Icons.list, color: Colors.grey), label: Text('sample text', style: customStyle,)),
+    ];
+
+    return SpeedDialFloatingActionButton(
+      actions: icons,
+      // Make sure one of child widget has Key value to have fade transition if widgets are same type.
+      childOnFold: Icon(Icons.local_dining, key: UniqueKey(),),
+      childOnUnfold: Icon(Icons.add,),
+      useRotateAnimation: true,
+      onAction: _onSpeedDialAction,
+    );
+  }
+  
+_onSpeedDialAction(int selectedActionIndex) {
+  print('$selectedActionIndex Selected');
 }
