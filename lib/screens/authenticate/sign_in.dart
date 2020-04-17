@@ -37,7 +37,7 @@ class _SignInState extends State<SignIn> {
                   validator: (value) => value.isEmpty ? "Enter an email" : null,
                   decoration: InputDecoration(hintText: "Email"),
                   onChanged: (value) {
-                    setState(() => email = value);
+                    setState(() => email = value.trim());
                   },
                 ),
                 SizedBox(height: 20.0),

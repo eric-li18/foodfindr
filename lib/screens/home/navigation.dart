@@ -27,11 +27,10 @@ class _NavigationState extends State<Navigation> {
     });
   }
 
-
   PageController _c;
   @override
-  void initState(){
-    _c =  new PageController(
+  void initState() {
+    _c = new PageController(
       initialPage: _currentIndex,
     );
     super.initState();
@@ -51,9 +50,9 @@ class _NavigationState extends State<Navigation> {
       ),
       body: new PageView(
         controller: _c,
-        onPageChanged: (newPage){
-          setState((){
-            this._currentIndex=newPage;
+        onPageChanged: (newPage) {
+          setState(() {
+            this._currentIndex = newPage;
           });
         },
         children: _children,
@@ -81,58 +80,76 @@ class _NavigationState extends State<Navigation> {
           unselectedItemColor: Colors.grey,
           selectedFontSize: 12,
           unselectedFontSize: 12,
-          onTap: (index){
-          _c.animateToPage(index,duration: const Duration(milliseconds: 500),curve: Curves.easeInOut);
-        },
+          onTap: (index) {
+            _c.animateToPage(index,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeInOut);
+          },
           currentIndex: _currentIndex,
           elevation: 0,
           backgroundColor: Colors.white,
           items: [
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home,
-                ),
-                title: Text("home")),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.favorite,
-                ),
-                title: Text("favs")),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.history,
-                ),
-                title: Text("history")),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.account_circle,
-                ),
-                title: Text("profile")),
+            navIcon("Home", Icons.home),
+            navIcon("Fav", Icons.favorite),
+            navIcon("History", Icons.history),
+            navIcon("Profile", Icons.account_circle)
           ],
         ),
       ),
     );
   }
+
+  BottomNavigationBarItem navIcon(String text, IconData icon){
+    return BottomNavigationBarItem(
+      icon: Icon(icon),
+      title: Text(
+        text,
+        style: TextStyle(
+          fontFamily: "Futura Medium"
+        ),
+      )
+    );
+  }
 }
 
 Widget _buildFloatingActionButton() {
-    final TextStyle customStyle = TextStyle(inherit: false, color: Colors.black);
-    final icons = [
-      SpeedDialAction(child: Icon(Icons.mode_edit, color: Colors.grey), label: Text('sample text', style: customStyle,)),
-      SpeedDialAction(child: Icon(Icons.date_range, color: Colors.grey), label: Text('sample text', style: customStyle,)),
-      SpeedDialAction(child: Icon(Icons.list, color: Colors.grey), label: Text('sample text', style: customStyle,)),
-    ];
+  final TextStyle customStyle = TextStyle(inherit: false, color: Colors.black);
+  final icons = [
+    SpeedDialAction(
+        child: Icon(Icons.mode_edit, color: Colors.grey),
+        label: Text(
+          'sample text',
+          style: customStyle,
+        )),
+    SpeedDialAction(
+        child: Icon(Icons.date_range, color: Colors.grey),
+        label: Text(
+          'sample text',
+          style: customStyle,
+        )),
+    SpeedDialAction(
+        child: Icon(Icons.list, color: Colors.grey),
+        label: Text(
+          'sample text',
+          style: customStyle,
+        )),
+  ];
 
-    return SpeedDialFloatingActionButton(
-      actions: icons,
-      // Make sure one of child widget has Key value to have fade transition if widgets are same type.
-      childOnFold: Icon(Icons.local_dining, key: UniqueKey(),),
-      childOnUnfold: Icon(Icons.add,),
-      useRotateAnimation: true,
-      onAction: _onSpeedDialAction,
-    );
-  }
-  
+  return SpeedDialFloatingActionButton(
+    actions: icons,
+    // Make sure one of child widget has Key value to have fade transition if widgets are same type.
+    childOnFold: Icon(
+      Icons.local_dining,
+      key: UniqueKey(),
+    ),
+    childOnUnfold: Icon(
+      Icons.add,
+    ),
+    useRotateAnimation: true,
+    onAction: _onSpeedDialAction,
+  );
+}
+
 _onSpeedDialAction(int selectedActionIndex) {
   print('$selectedActionIndex Selected');
 }

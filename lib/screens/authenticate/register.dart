@@ -38,7 +38,7 @@ class _RegisterState extends State<Register> {
                   hintText: "Email"
                 ),
                 onChanged: (value){
-                  setState(() => email = value);
+                  setState(() => email = value.trim());
                 },
               ), 
               SizedBox(height: 20.0),

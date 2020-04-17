@@ -13,7 +13,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(child: Text('favourites page'))),
+        child: Center(child: Text('profile page'))),
         floatingActionButton: FloatingActionButton(onPressed: () {AuthService().signOut();},),
         floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );

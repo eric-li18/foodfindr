@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
             SliverToBoxAdapter(
               child: Container(
                 child: Text(
-                  'Recommanded for you',
+                  'Recommended for you',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 18,
