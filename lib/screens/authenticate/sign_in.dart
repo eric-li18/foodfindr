@@ -37,109 +37,66 @@ class _SignInState extends State<SignIn> {
                 SizedBox(height: 10.0),
                 Text(error),
                 SizedBox(height: 10.0),
-                ButtonTheme(
-                    minWidth: 400.0,
-                    child: FlatButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(6.0),
-                      ),
-                      color: Colors.red,
-                      child: Text(
-                        "SIGN IN",
-                        style: TextStyle(
-                          fontFamily: 'Futura Medium',
-                          color: Colors.white,
-                        ),
-                      ),
-                      onPressed: () async {
-                        if (_formKey.currentState.validate()) {
-                          dynamic result =
-                              await _auth.signInWithEmail(email, password);
-                          if (result == null) {
-                            setState(() {
-                              error = "Please supply a valid email";
-                            });
-                          }
-                        }
-                      },
-                    )),
-                ButtonTheme(
-                    minWidth: 400.0,
-                    child: FlatButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(6.0),
-                      ),
-                      color: Colors.red,
-                      child: Text(
-                        "REGISTER NOW",
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                      onPressed: () {
-                        widget.toggleSignedIn();
-                      },
-                    )),
-                Row(children: <Widget>[
-                  Expanded(
-                    child: new Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Divider(
-                          color: Colors.black,
-                          height: 36,
-                        )),
-                  ),
-                  Text("OR"),
-                  Expanded(
-                    child: new Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Divider(
-                          color: Colors.black,
-                          height: 36,
-                        )),
-                  ),
-                ]),
+                barButton("SIGN IN", () async {
+                  if (_formKey.currentState.validate()) {
+                    dynamic result =
+                        await _auth.signInWithEmail(email, password);
+                    if (result == null) {
+                      setState(() {
+                        error = "Please supply a valid email";
+                      });
+                    }
+                  }
+                }),
+                barButton("REGISTER NOW", () {
+                  widget.toggleSignedIn();
+                }),
+                signInDivider(),
                 SizedBox(height: 20.0),
-                Row(
-                  children: <Widget>[
-                    Expanded(child: SizedBox(width: 1.0)),
-                    SignInButton(Buttons.Facebook, mini: true, onPressed: () {
-                      AuthService().signInWithFacebook();
-                    }),
-                    // RaisedButton.icon(icon: FaIcon(FontAwesomeIcons.google), onPressed: () {print("hello");},)
-                    Expanded(child: SizedBox(width: 1.0)),
-                    SizedBox.fromSize(
-                      size: Size(40, 40),
-                      child: ClipOval(
-                        child: Material(
-                          color: Colors.grey[850],
-                          child: InkWell(
-                            onTap: () {
-                              AuthService().signInWithGoogle();
-                            },
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                FaIcon(FontAwesomeIcons.google,
-                                    color: Colors.white),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(child: SizedBox(width: 1.0)),
-                  ],
-                ),
+                // Row(
+                // children: <Widget>[
+                // Expanded(child: SizedBox(width: 1.0)),
+                SignInButton(Buttons.Facebook, onPressed: () {
+                  AuthService().signInWithFacebook();
+                }),
+                // RaisedButton.icon(icon: FaIcon(FontAwesomeIcons.google), onPressed: () {print("hello");},)
+                // Expanded(child: SizedBox(width: 1.0)),
+                // SizedBox.fromSize(
+                //   size: Size(40, 40),
+                //   child: ClipOval(
+                //     child: Material(
+                //       color: Colors.grey[850],
+                //       child: InkWell(
+                //         onTap: () {
+                //           AuthService().signInWithGoogle();
+                //         },
+                //         child: Column(
+                //           mainAxisAlignment: MainAxisAlignment.center,
+                //           children: <Widget>[
+                //             FaIcon(FontAwesomeIcons.google,
+                //                 color: Colors.white),
+                //           ],
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+
+                // Expanded(child: SizedBox(width: 1.0)),
+                SignInButton(Buttons.Google, onPressed: () {
+                  AuthService().signInWithGoogle();
+                }),
+                // Expanded(child: SizedBox(width: 1.0)),
+                // ],
+                // ),
               ]),
         ),
       ),
     );
   }
 
-  Container emailAndPasswordForms() {
-    return Container(
-        child: Column(children: <Widget>[
+  Column emailAndPasswordForms() {
+    return Column(children: <Widget>[
       TextFormField(
         validator: (value) => value.isEmpty ? "Enter an email" : null,
         decoration: InputDecoration(hintText: "Email"),
@@ -149,14 +106,56 @@ class _SignInState extends State<SignIn> {
       ),
       SizedBox(height: 20.0),
       TextFormField(
-        validator: (value) =>
-            value.isEmpty ? "Enter a password" : null,
+        validator: (value) => value.isEmpty ? "Enter a password" : null,
         decoration: InputDecoration(hintText: "Password"),
         onChanged: (value) {
           setState(() => password = value);
         },
         obscureText: true,
       )
-    ]));
+    ]);
+  }
+
+  Row signInDivider() {
+    return Row(
+      children: <Widget>[
+        Expanded(
+          child: new Container(
+              margin: EdgeInsets.symmetric(horizontal: 10.0),
+              child: Divider(
+                color: Colors.black,
+                height: 36,
+              )),
+        ),
+        Text("OR"),
+        Expanded(
+          child: new Container(
+              margin: EdgeInsets.symmetric(horizontal: 10.0),
+              child: Divider(
+                color: Colors.black,
+                height: 36,
+              )),
+        ),
+      ],
+    );
+  }
+
+  ButtonTheme barButton(String text, Function onPressed) {
+    return ButtonTheme(
+        minWidth: 400.0,
+        child: FlatButton(
+          shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(6.0),
+          ),
+          color: Colors.red,
+          child: Text(
+            text,
+            style: TextStyle(
+              fontFamily: 'Futura Medium',
+              color: Colors.white,
+            ),
+          ),
+          onPressed: onPressed,
+        ));
   }
 }

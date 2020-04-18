@@ -20,33 +20,22 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  "Register a new account",
-                ),
-                emailAndPasswordForms(),
-                SizedBox(height: 10.0),
-                Text(error),
-                SizedBox(height: 10.0),
-                FlatButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(18.0),
-                      side: BorderSide(color: Colors.red)),
-                  color: Colors.red,
-                  child: Text(
-                    "Register",
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
+        backgroundColor: Colors.white,
+        body: Container(
+          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    "Register a new account",
                   ),
-                  onPressed: () async {
+                  emailAndPasswordForms(),
+                  SizedBox(height: 10.0),
+                  Text(error),
+                  SizedBox(height: 10.0),
+                  barButton("REGISTER", () async {
                     if (_formKey.currentState.validate()) {
                       dynamic result =
                           await _auth.registerWithEmail(email, password);
@@ -56,31 +45,18 @@ class _RegisterState extends State<Register> {
                         });
                       }
                     }
-                  },
-                ),
-                FlatButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(18.0),
-                        side: BorderSide(color: Colors.red)),
-                    color: Colors.red,
-                    child: Text(
-                      "Already have an account?",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                    onPressed: () {
-                      widget.toggleSignedIn();
-                    })
-              ]),
-        ),
-      ),
-    );
+                    ;
+                  }),
+                  barButton("ALREADY HAVE AN ACCOUNT?", () {
+                    widget.toggleSignedIn();
+                  }),
+                ]),
+          ),
+        ));
   }
 
-  Container emailAndPasswordForms() {
-    return Container(
-        child: Column(children: <Widget>[
+  Column emailAndPasswordForms() {
+    return Column(children: <Widget>[
       TextFormField(
         validator: (value) => value.isEmpty ? "Enter an email" : null,
         decoration: InputDecoration(hintText: "Email"),
@@ -98,6 +74,25 @@ class _RegisterState extends State<Register> {
         },
         obscureText: true,
       )
-    ]));
+    ]);
+  }
+
+  ButtonTheme barButton(String text, Function onPressed) {
+    return ButtonTheme(
+        minWidth: 400.0,
+        child: FlatButton(
+          shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(6.0),
+          ),
+          color: Colors.red,
+          child: Text(
+            text,
+            style: TextStyle(
+              fontFamily: 'Futura Medium',
+              color: Colors.white,
+            ),
+          ),
+          onPressed: onPressed,
+        ));
   }
 }
