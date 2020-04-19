@@ -16,11 +16,9 @@ class _ProfileState extends State<Profile> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             // add picture and name from Facebook or Google
-            SizedBox(height: 30.0),
+            SizedBox(height: 36.0),
             _sectionDivider(),
-            _settingButton("Settings", Icons.settings, () {
-              print("hello");
-            }),
+            _settingButton("Settings", Icons.settings, () { print("hello"); }),
           ],
         ),
       ),
@@ -38,7 +36,7 @@ class _ProfileState extends State<Profile> {
     const double indentValue = 15.0;
     return Divider(
       color: Colors.black,
-      height: 36,
+      height: 16,
       indent: indentValue,
       endIndent: indentValue,
     );

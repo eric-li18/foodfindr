@@ -83,9 +83,15 @@ class _SignInState extends State<SignIn> {
                 // ),
 
                 // Expanded(child: SizedBox(width: 1.0)),
-                SignInButton(Buttons.Google, onPressed: () {
+                SignInButton(Buttons.GoogleDark, onPressed: () {
                   AuthService().signInWithGoogle();
                 }),
+                SignInButtonBuilder(
+                  text: 'Sign in Anonymously',
+                  icon: Icons.person_outline,
+                  onPressed: () {AuthService().signInAnon();},
+                  backgroundColor: Colors.blueGrey[700],
+                )
                 // Expanded(child: SizedBox(width: 1.0)),
                 // ],
                 // ),

@@ -53,7 +53,7 @@ class AuthService {
     }
   }
 
-  //Sign out
+  //Sign out from all account
   Future signOut() async {
     try {
       return await _auth.signOut();

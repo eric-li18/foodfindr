@@ -30,11 +30,11 @@ class _RegisterState extends State<Register> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text("Register a new account",),
-                  emailAndPasswordForms(),
+                  _emailAndPasswordForms(),
                   SizedBox(height: 7.0),
                   Text( error, style: TextStyle( color: Colors.red),),
                   SizedBox(height: 3.0),
-                  barButton("REGISTER", () async {
+                  _barButton("REGISTER", () async {
                     if (_formKey.currentState.validate()) {
                       dynamic result = await _auth.registerWithEmail(email, password);
                       if (result == null) {
@@ -44,13 +44,13 @@ class _RegisterState extends State<Register> {
                       }
                     };
                   }),
-                  barButton("ALREADY HAVE AN ACCOUNT?", () { widget.toggleSignedIn(); }),
+                  _barButton("ALREADY HAVE AN ACCOUNT?", () { widget.toggleSignedIn(); }),
                 ]),
           ),
         ));
   }
 
-  Column emailAndPasswordForms() {
+  Column _emailAndPasswordForms() {
     return Column(children: <Widget>[
       TextFormField(
         validator: (value) => value.isEmpty ? "Enter an email" : null,
@@ -88,7 +88,7 @@ class _RegisterState extends State<Register> {
     ]);
   }
 
-  ButtonTheme barButton(String text, Function onPressed) {
+  ButtonTheme _barButton(String text, Function onPressed) {
     return ButtonTheme(
         minWidth: 400.0,
         child: FlatButton(
