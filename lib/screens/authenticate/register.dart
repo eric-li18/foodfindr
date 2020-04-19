@@ -15,6 +15,7 @@ class _RegisterState extends State<Register> {
 
   String email = '';
   String password = '';
+  String tempPassword = '';
   String error = '';
 
   @override
@@ -70,10 +71,26 @@ class _RegisterState extends State<Register> {
             value.length < 6 ? "Enter a password 6+ characters long" : null,
         decoration: InputDecoration(hintText: "Password"),
         onChanged: (value) {
+          setState(() => tempPassword = value);
+        },
+        obscureText: true,
+      ),
+      SizedBox(height: 20.0),
+      TextFormField(
+        validator: (value) {
+          if (value.isEmpty) {
+            return("Enter your password again");
+          } else if(value != tempPassword){
+            return("Passwords don't match");
+          }
+          return null;
+        },
+        decoration: InputDecoration(hintText: "Re-enter Password"),
+        onChanged: (value) {
           setState(() => password = value);
         },
         obscureText: true,
-      )
+      ),
     ]);
   }
 
