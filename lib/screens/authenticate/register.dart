@@ -29,28 +29,22 @@ class _RegisterState extends State<Register> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
-                    "Register a new account",
-                  ),
+                  Text("Register a new account",),
                   emailAndPasswordForms(),
-                  SizedBox(height: 10.0),
-                  Text(error),
-                  SizedBox(height: 10.0),
+                  SizedBox(height: 7.0),
+                  Text( error, style: TextStyle( color: Colors.red),),
+                  SizedBox(height: 3.0),
                   barButton("REGISTER", () async {
                     if (_formKey.currentState.validate()) {
-                      dynamic result =
-                          await _auth.registerWithEmail(email, password);
+                      dynamic result = await _auth.registerWithEmail(email, password);
                       if (result == null) {
                         setState(() {
                           error = "Please supply a valid email";
                         });
                       }
-                    }
-                    ;
+                    };
                   }),
-                  barButton("ALREADY HAVE AN ACCOUNT?", () {
-                    widget.toggleSignedIn();
-                  }),
+                  barButton("ALREADY HAVE AN ACCOUNT?", () { widget.toggleSignedIn(); }),
                 ]),
           ),
         ));
@@ -65,7 +59,7 @@ class _RegisterState extends State<Register> {
           setState(() => email = value.trim());
         },
       ),
-      SizedBox(height: 20.0),
+      SizedBox(height: 10.0),
       TextFormField(
         validator: (value) =>
             value.length < 6 ? "Enter a password 6+ characters long" : null,
@@ -75,7 +69,7 @@ class _RegisterState extends State<Register> {
         },
         obscureText: true,
       ),
-      SizedBox(height: 20.0),
+      SizedBox(height: 10.0),
       TextFormField(
         validator: (value) {
           if (value.isEmpty) {

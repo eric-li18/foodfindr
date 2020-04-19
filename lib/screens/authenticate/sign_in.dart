@@ -33,11 +33,11 @@ class _SignInState extends State<SignIn> {
                 Text(
                   "Sign in to your account",
                 ),
-                emailAndPasswordForms(),
-                SizedBox(height: 10.0),
+                _emailAndPasswordForms(),
+                SizedBox(height: 7.0),
                 Text(error),
-                SizedBox(height: 10.0),
-                barButton("SIGN IN", () async {
+                SizedBox(height: 3.0),
+                _barButton("SIGN IN", () async {
                   if (_formKey.currentState.validate()) {
                     dynamic result =
                         await _auth.signInWithEmail(email, password);
@@ -48,11 +48,11 @@ class _SignInState extends State<SignIn> {
                     }
                   }
                 }),
-                barButton("REGISTER NOW", () {
+                _barButton("REGISTER NOW", () {
                   widget.toggleSignedIn();
                 }),
-                signInDivider(),
-                SizedBox(height: 20.0),
+                _signInDivider(),
+                SizedBox(height: 7.0),
                 // Row(
                 // children: <Widget>[
                 // Expanded(child: SizedBox(width: 1.0)),
@@ -95,7 +95,7 @@ class _SignInState extends State<SignIn> {
     );
   }
 
-  Column emailAndPasswordForms() {
+  Column _emailAndPasswordForms() {
     return Column(children: <Widget>[
       TextFormField(
         validator: (value) => value.isEmpty ? "Enter an email" : null,
@@ -104,7 +104,7 @@ class _SignInState extends State<SignIn> {
           setState(() => email = value.trim());
         },
       ),
-      SizedBox(height: 20.0),
+      SizedBox(height: 10.0),
       TextFormField(
         validator: (value) => value.isEmpty ? "Enter a password" : null,
         decoration: InputDecoration(hintText: "Password"),
@@ -116,7 +116,7 @@ class _SignInState extends State<SignIn> {
     ]);
   }
 
-  Row signInDivider() {
+  Row _signInDivider() {
     return Row(
       children: <Widget>[
         Expanded(
@@ -140,7 +140,7 @@ class _SignInState extends State<SignIn> {
     );
   }
 
-  ButtonTheme barButton(String text, Function onPressed) {
+  ButtonTheme _barButton(String text, Function onPressed) {
     return ButtonTheme(
         minWidth: 400.0,
         child: FlatButton(
