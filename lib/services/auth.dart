@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:foodfindr/models/user.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -6,11 +9,16 @@ import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 //Consider making this Auth service a Singleton?
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
+  static Map<String,dynamic> profileData;
   //Format FireBaseUser as type user with only user id (UID)
   User _userFromFirebaseUser(FirebaseUser user) {
     return user != null ? User(uid: user.uid) : null;
   }
+  
+  // Map<String,dynamic> get profileData => _profileData;
+  // set profileData(Map<String,dynamic> profileData) {
+  //   _profileData = profileData;
+  // }
 
   //Listen for Auth changes
   Stream<User> get user {
@@ -56,6 +64,7 @@ class AuthService {
   //Sign out from all account
   Future signOut() async {
     try {
+      profileData = null;
       return await _auth.signOut();
     } catch (e) {
       print(e.toString());
@@ -73,13 +82,15 @@ class AuthService {
         case FacebookLoginStatus.cancelledByUser:
           print("Cancelled");
           return null;
-          break;
         case FacebookLoginStatus.error:
           print("error");
           return null;
-          break;
         case FacebookLoginStatus.loggedIn:
-          print("Logged In");
+          var graphResponse = await http.get(
+              'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture.width(400)&access_token=${facebookLoginResult
+                  .accessToken.token}');
+
+          profileData = json.decode(graphResponse.body);
           break;
       }
       return facebookLoginResult;

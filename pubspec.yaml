@@ -51,10 +51,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/Something.png
-    - assets/Sky.jpg
-    - assets/Watermelon.jpg
-    - assets/Ramen.jpg
+    - assets/images/Something.png
+    - assets/images/Sky.jpg
+    - assets/images/Watermelon.jpg
+    - assets/images/Ramen.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -84,4 +84,7 @@ flutter:
 fonts:
   - family: Futura Medium
     fonts:
-      - asset: fonts/futuramedium.ttf
+      - asset: assets/fonts/futuramedium.ttf
+  - family: Futura Book
+    fonts:
+      - asset: assets/fonts/futurabook.ttf

@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                             decoration: ShapeDecoration(
                               image: DecorationImage(
                                 image: ExactAssetImage(
-                                  'assets/Watermelon.jpg'
+                                  'assets/images/Watermelon.jpg'
                                 ),
                                 fit: BoxFit.cover
                               ),
@@ -165,7 +165,7 @@ class _HomePageState extends State<HomePage> {
                           decoration: ShapeDecoration(
                             image: DecorationImage(
                               image: ExactAssetImage(
-                                'assets/Ramen.jpg'
+                                'assets/images/Ramen.jpg'
                               ),
                               fit: BoxFit.cover
                             ),
