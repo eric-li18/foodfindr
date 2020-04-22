@@ -9,16 +9,15 @@ import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 //Consider making this Auth service a Singleton?
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  static Map<String,dynamic> profileData;
+  static Map<String,dynamic> _profileData;
+
   //Format FireBaseUser as type user with only user id (UID)
   User _userFromFirebaseUser(FirebaseUser user) {
     return user != null ? User(uid: user.uid) : null;
   }
   
-  // Map<String,dynamic> get profileData => _profileData;
-  // set profileData(Map<String,dynamic> profileData) {
-  //   _profileData = profileData;
-  // }
+  Map<String,dynamic> get profileData => _profileData;
+  set profileData(Map<String,dynamic> profileData) => _profileData = profileData;
 
   //Listen for Auth changes
   Stream<User> get user {

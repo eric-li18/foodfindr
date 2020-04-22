@@ -9,7 +9,6 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +18,6 @@ class _ProfileState extends State<Profile> {
           children: <Widget>[
             // add picture and name from Facebook or Google
             displayUserData(),
-            SizedBox(height: 36.0),
             _sectionDivider(),
             _settingButton("Edit Account", () {}, FontAwesomeIcons.pen),
             _settingButton("Settings", () {
@@ -27,17 +25,20 @@ class _ProfileState extends State<Profile> {
             }, FontAwesomeIcons.cog),
             _settingButton("Preferences", () {}, FontAwesomeIcons.solidHeart),
             _sectionDivider(),
+            _settingButton("Logout", () {
+              AuthService().signOut();
+            }),
             _settingButton("About", () {})
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.person, size: 30.0),
-        onPressed: () {
-          AuthService().signOut();
-        },
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(Icons.person, size: 30.0),
+      //   onPressed: () {
+      //     AuthService().signOut();
+      //   },
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 
@@ -53,12 +54,17 @@ class _ProfileState extends State<Profile> {
 
   FlatButton _settingButton(String text, Function onPressed, [IconData icon]) {
     List<Widget> children = <Widget>[
+      SizedBox(width: 20.0),
       SizedBox(width: 10.0),
-      SizedBox(width: 10.0),
-      Text(text, style: TextStyle(fontSize: 17.0, fontFamily: "Futura Book"))
+      Text(
+        text,
+        style: TextStyle(
+          fontWeight: FontWeight.w400
+        ),
+      )
     ];
     if (icon != null) {
-      children.insert(1, Icon(icon, size: 20.0));
+      children.insert(1, Icon(icon, size: 17.0));
     }
     return FlatButton(
         onPressed: onPressed,
@@ -69,32 +75,54 @@ class _ProfileState extends State<Profile> {
   }
 
   Row displayUserData() {
-    print("=====================================================");
-    Map<String,dynamic> profile = AuthService.profileData;
-    var profileName = "User";
-    var profilePicture =
-        "https://www.kindpng.com/picc/m/111-1113220_peepo-emote-hd-png-download.png";
+    Map<String, dynamic> profile = AuthService().profileData;
+    const double dimension = 55.0;
+    var profileName = "Anonymous User";
+    String profileEmail = "";
+    ImageProvider image =
+        ExactAssetImage("assets/images/defaultpicture.png"); // LOAD ICON HERE
+
     if (profile != null) {
-      profilePicture = profile['picture']['data']['url'];
+      var profilePicture = profile['picture']['data']['url'];
       profileName = profile['name'];
+      profileEmail = profile['email'];
+      image = NetworkImage(profilePicture);
     }
-    const double dimension = 70.0;
+    print(profile);
+
     return Row(children: <Widget>[
       Container(
-        height: dimension,
-        width: dimension,
-        padding: EdgeInsets.all(21.0),
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          image: DecorationImage(
-            fit: BoxFit.fitHeight,
-            image: NetworkImage(profilePicture),
+        padding: EdgeInsets.only(left: 10.0, right: 7.0, bottom: 5.0),
+        child: Container(
+          height: dimension,
+          width: dimension,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            image: DecorationImage(
+              fit: BoxFit.fitHeight,
+              image: image,
+            ),
           ),
         ),
       ),
       Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(profileName),
+          Text(
+            profileName,
+            style: TextStyle(
+              fontSize: 15.0,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          SizedBox(height: 5.0),
+          Text(
+            profileEmail,
+            style: TextStyle(
+              fontSize: 12.0,
+              color: Colors.black45,
+            ),
+          )
         ],
       ),
     ]);
