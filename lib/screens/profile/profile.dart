@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:foodfindr/screens/profile/settings.dart';
 import 'package:foodfindr/services/auth.dart';
 
 class Profile extends StatefulWidget {
@@ -21,7 +22,8 @@ class _ProfileState extends State<Profile> {
             _sectionDivider(),
             _settingButton("Edit Account", () {}, FontAwesomeIcons.pen),
             _settingButton("Settings", () {
-              print("hello");
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Settings()));
             }, FontAwesomeIcons.cog),
             _settingButton("Preferences", () {}, FontAwesomeIcons.solidHeart),
             _sectionDivider(),
@@ -32,13 +34,6 @@ class _ProfileState extends State<Profile> {
           ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   child: Icon(Icons.person, size: 30.0),
-      //   onPressed: () {
-      //     AuthService().signOut();
-      //   },
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 
@@ -58,9 +53,7 @@ class _ProfileState extends State<Profile> {
       SizedBox(width: 10.0),
       Text(
         text,
-        style: TextStyle(
-          fontWeight: FontWeight.w400
-        ),
+        style: TextStyle(fontWeight: FontWeight.w400),
       )
     ];
     if (icon != null) {
@@ -79,8 +72,7 @@ class _ProfileState extends State<Profile> {
     const double dimension = 55.0;
     var profileName = "Anonymous User";
     String profileEmail = "";
-    ImageProvider image =
-        ExactAssetImage("assets/images/defaultpicture.png"); // LOAD ICON HERE
+    ImageProvider image = ExactAssetImage("assets/images/defaultpicture.png");
 
     if (profile != null) {
       var profilePicture = profile['picture']['data']['url'];
