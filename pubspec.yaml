@@ -32,7 +32,6 @@ dependencies:
   font_awesome_flutter: ^8.8.1
   flutter_speed_dial_material_design: ^1.2.0
   flutter_speed_dial: ^1.2.5
-  shared_preferences: ^0.5.7
 
 dev_dependencies:
   flutter_test:
