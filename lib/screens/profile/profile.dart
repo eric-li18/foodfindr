@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:foodfindr/screens/profile/settings.dart';
+import 'package:foodfindr/screens/profile/about.dart';
 import 'package:foodfindr/services/auth.dart';
 
 class Profile extends StatefulWidget {
@@ -30,7 +31,10 @@ class _ProfileState extends State<Profile> {
             _settingButton("Logout", () {
               AuthService().signOut();
             }),
-            _settingButton("About", () {})
+            _settingButton("About", () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => About()));
+            })
           ],
         ),
       ),
