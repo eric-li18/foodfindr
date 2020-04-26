@@ -6,6 +6,7 @@ import 'package:foodfindr/screens/history/history.dart';
 import 'package:foodfindr/screens/home/home.dart';
 import 'package:foodfindr/screens/profile/profile.dart';
 import 'package:foodfindr/services/auth.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class Navigation extends StatefulWidget {
   @override
@@ -38,7 +39,8 @@ class _NavigationState extends State<Navigation> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( appBar: CupertinoNavigationBar(
+    return Scaffold(
+      appBar: CupertinoNavigationBar(
         trailing: FlatButton.icon(
           onPressed: () {
             AuthService().signOut();
@@ -47,25 +49,31 @@ class _NavigationState extends State<Navigation> {
           label: Text("Logout"),
         ),
       ),
-      body: new PageView(
-        controller: _c,
-        onPageChanged: (newPage) {
-          setState(() {
-            this._currentIndex = newPage;
-          });
-        },
-        children: _children,
+      body: Stack(
+        children: <Widget>[
+          Center(
+              child: new PageView(
+            controller: _c,
+            onPageChanged: (newPage) {
+              setState(() {
+                this._currentIndex = newPage;
+              });
+            },
+            children: _children,
+          )),
+          SlidingUpPanel(
+            panel: Center(
+              child: Text("hello "),
+            ),
+            borderRadius: radius,
+            panelSnapping: true,
+            backdropEnabled: true,
+            controller: _pc,
+            minHeight: 0,
+            maxHeight: 400,
+          )
+        ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: null,
-      //   backgroundColor: Colors.green,
-      //   child: Icon(
-      //     Icons.local_dining,
-      //     size: 36,
-      //   ),
-      //   elevation: 0,
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: _buildFloatingActionButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
@@ -98,38 +106,39 @@ class _NavigationState extends State<Navigation> {
     );
   }
 
-  BottomNavigationBarItem navIcon(String text, IconData icon){
+  BottomNavigationBarItem navIcon(String text, IconData icon) {
     return BottomNavigationBarItem(
-      icon: Icon(icon),
-      title: Text(
-        text,
-        style: TextStyle(
-          fontFamily: "Futura Medium"
-        ),
-      )
-    );
+        icon: Icon(icon),
+        title: Text(
+          text,
+          style: TextStyle(fontFamily: "Futura Medium"),
+        ));
   }
 }
+
+PanelController _pc = new PanelController();
+BorderRadiusGeometry radius = BorderRadius.only(
+    topLeft: Radius.circular(24.0), topRight: Radius.circular(24.0));
 
 Widget _buildFloatingActionButton() {
   final TextStyle customStyle = TextStyle(inherit: false, color: Colors.black);
   final icons = [
     SpeedDialAction(
-        child: Icon(Icons.mode_edit, color: Colors.grey),
+        child: Icon(Icons.person, color: Colors.grey),
         label: Text(
-          'sample text',
+          'Solo',
           style: customStyle,
         )),
     SpeedDialAction(
-        child: Icon(Icons.date_range, color: Colors.grey),
+        child: Icon(Icons.group_add, color: Colors.grey),
         label: Text(
-          'sample text',
+          'Join',
           style: customStyle,
         )),
     SpeedDialAction(
-        child: Icon(Icons.list, color: Colors.grey),
+        child: Icon(Icons.add, color: Colors.grey),
         label: Text(
-          'sample text',
+          'Create',
           style: customStyle,
         )),
   ];
@@ -151,4 +160,11 @@ Widget _buildFloatingActionButton() {
 
 _onSpeedDialAction(int selectedActionIndex) {
   print('$selectedActionIndex Selected');
+  if (selectedActionIndex == 0) {
+    //TODO
+  } else if (selectedActionIndex == 1) {
+    //TODO
+  } else {
+    _pc.open();
+  }
 }
