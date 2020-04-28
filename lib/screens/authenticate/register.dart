@@ -15,72 +15,43 @@ class _RegisterState extends State<Register> {
 
   String email = '';
   String password = '';
+  String tempPassword = '';
   String error = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  "Register a new account",
-                ),
-                emailAndPasswordForms(),
-                SizedBox(height: 10.0),
-                Text(error),
-                SizedBox(height: 10.0),
-                FlatButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(18.0),
-                      side: BorderSide(color: Colors.red)),
-                  color: Colors.red,
-                  child: Text(
-                    "Register",
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPressed: () async {
+        backgroundColor: Colors.white,
+        body: Container(
+          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text("Register a new account",),
+                  _emailAndPasswordForms(),
+                  SizedBox(height: 7.0),
+                  Text( error, style: TextStyle( color: Colors.red),),
+                  SizedBox(height: 3.0),
+                  _barButton("REGISTER", () async {
                     if (_formKey.currentState.validate()) {
-                      dynamic result =
-                          await _auth.registerWithEmail(email, password);
+                      dynamic result = await _auth.registerWithEmail(email, password);
                       if (result == null) {
                         setState(() {
                           error = "Please supply a valid email";
                         });
                       }
-                    }
-                  },
-                ),
-                FlatButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(18.0),
-                        side: BorderSide(color: Colors.red)),
-                    color: Colors.red,
-                    child: Text(
-                      "Already have an account?",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                    onPressed: () {
-                      widget.toggleSignedIn();
-                    })
-              ]),
-        ),
-      ),
-    );
+                    };
+                  }),
+                  _barButton("ALREADY HAVE AN ACCOUNT?", () { widget.toggleSignedIn(); }),
+                ]),
+          ),
+        ));
   }
 
-  Container emailAndPasswordForms() {
-    return Container(
-        child: Column(children: <Widget>[
+  Column _emailAndPasswordForms() {
+    return Column(children: <Widget>[
       TextFormField(
         validator: (value) => value.isEmpty ? "Enter an email" : null,
         decoration: InputDecoration(hintText: "Email"),
@@ -88,16 +59,51 @@ class _RegisterState extends State<Register> {
           setState(() => email = value.trim());
         },
       ),
-      SizedBox(height: 20.0),
+      SizedBox(height: 10.0),
       TextFormField(
         validator: (value) =>
             value.length < 6 ? "Enter a password 6+ characters long" : null,
         decoration: InputDecoration(hintText: "Password"),
         onChanged: (value) {
+          setState(() => tempPassword = value);
+        },
+        obscureText: true,
+      ),
+      SizedBox(height: 10.0),
+      TextFormField(
+        validator: (value) {
+          if (value.isEmpty) {
+            return("Enter your password again");
+          } else if(value != tempPassword){
+            return("Passwords don't match");
+          }
+          return null;
+        },
+        decoration: InputDecoration(hintText: "Re-enter Password"),
+        onChanged: (value) {
           setState(() => password = value);
         },
         obscureText: true,
-      )
-    ]));
+      ),
+    ]);
+  }
+
+  ButtonTheme _barButton(String text, Function onPressed) {
+    return ButtonTheme(
+        minWidth: 400.0,
+        child: FlatButton(
+          shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(6.0),
+          ),
+          color: Colors.red,
+          child: Text(
+            text,
+            style: TextStyle(
+              fontFamily: 'Futura Medium',
+              color: Colors.white,
+            ),
+          ),
+          onPressed: onPressed,
+        ));
   }
 }

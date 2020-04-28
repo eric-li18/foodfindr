@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-//import 'package:flutter/material.dart';
 import 'package:foodfindr/models/user.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
@@ -54,7 +53,7 @@ class AuthService {
     }
   }
 
-  //Sign out
+  //Sign out from all account
   Future signOut() async {
     try {
       return await _auth.signOut();

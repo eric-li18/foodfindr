@@ -1,6 +1,7 @@
 import UIKit
 import Flutter
 import Firebase
+import FBSDKLoginKit
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -10,8 +11,30 @@ import Firebase
   ) -> Bool {
     FirebaseApp.configure();
     GeneratedPluginRegistrant.register(with: self)
-    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+    ApplicationDelegate.shared.application(
+        application,
+        didFinishLaunchingWithOptions: launchOptions
+    )
+
+    return true
   }
+    
+    override func application(
+        _ app: UIApplication,
+        open url: URL,
+        options: [UIApplication.OpenURLOptionsKey : Any] = [:]
+    ) -> Bool {
+
+        ApplicationDelegate.shared.application(
+            app,
+            open: url,
+            sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+            annotation: options[UIApplication.OpenURLOptionsKey.annotation]
+        )
+
+    }
 }
 
+      
 
+    
