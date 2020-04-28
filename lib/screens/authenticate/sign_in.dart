@@ -22,43 +22,87 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[100],
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+        padding: EdgeInsets.only(top: 80.0, left: 30.0, right: 30.0),
         child: Form(
           key: _formKey,
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              // mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  "Sign in to your account",
+                  "Hello",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 40,
+                    color: Colors.black,
+                    fontFamily: 'Futura Medium',
+                  ),
                 ),
+                Text(
+                  "Welcome aboard",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontFamily: 'Futura Medium',
+                  ),
+                ),
+                Padding(padding: EdgeInsets.only(top: 40)),
                 _emailAndPasswordForms(),
                 SizedBox(height: 7.0),
                 Text(error),
                 SizedBox(height: 3.0),
-                _barButton("SIGN IN", () async {
-                  if (_formKey.currentState.validate()) {
-                    dynamic result =
-                        await _auth.signInWithEmail(email, password);
-                    if (result == null) {
-                      setState(() {
-                        error = "Please supply a valid email";
-                      });
-                    }
-                  }
-                }),
-                _barButton("REGISTER NOW", () {
-                  widget.toggleSignedIn();
-                }),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget> [
+                      _barButton("Sign in", () async {
+                        if (_formKey.currentState.validate()) {
+                          dynamic result =
+                              await _auth.signInWithEmail(email, password);
+                          if (result == null) {
+                            setState(() {
+                              error = "Please supply a valid email";
+                            });
+                          }
+                        }
+                      }),
+                      Padding(padding: EdgeInsets.symmetric(horizontal: 15)),
+                      _barButton("Register", () {
+                        widget.toggleSignedIn();
+                      }),
+                    ]
+                  ),
+                ),
+                Padding(padding: EdgeInsets.symmetric(vertical: 8)),
                 _signInDivider(),
-                SizedBox(height: 7.0),
+                Padding(padding: EdgeInsets.symmetric(vertical: 7)),
                 // Row(
                 // children: <Widget>[
                 // Expanded(child: SizedBox(width: 1.0)),
-                SignInButton(Buttons.Facebook, onPressed: () {
-                  AuthService().signInWithFacebook();
-                }),
+                Container(
+                  alignment: Alignment.center,
+                  child: Column(
+                    children: <Widget>[
+                      SignInButton(Buttons.Facebook, onPressed: () {
+                        AuthService().signInWithFacebook();
+                      }),
+                      SignInButton(Buttons.GoogleDark, onPressed: () {
+                        AuthService().signInWithGoogle();
+                      }),
+                      SignInButtonBuilder(
+                        text: 'Sign in Anonymously',
+                        icon: Icons.person_outline,
+                        onPressed: () {AuthService().signInAnon();},
+                        backgroundColor: Colors.blueGrey[700],
+                      )
+                    ]
+                  )
+                )
                 // RaisedButton.icon(icon: FaIcon(FontAwesomeIcons.google), onPressed: () {print("hello");},)
                 // Expanded(child: SizedBox(width: 1.0)),
                 // SizedBox.fromSize(
@@ -83,15 +127,7 @@ class _SignInState extends State<SignIn> {
                 // ),
 
                 // Expanded(child: SizedBox(width: 1.0)),
-                SignInButton(Buttons.GoogleDark, onPressed: () {
-                  AuthService().signInWithGoogle();
-                }),
-                SignInButtonBuilder(
-                  text: 'Sign in Anonymously',
-                  icon: Icons.person_outline,
-                  onPressed: () {AuthService().signInAnon();},
-                  backgroundColor: Colors.blueGrey[700],
-                )
+                
                 // Expanded(child: SizedBox(width: 1.0)),
                 // ],
                 // ),
@@ -105,7 +141,26 @@ class _SignInState extends State<SignIn> {
     return Column(children: <Widget>[
       TextFormField(
         validator: (value) => value.isEmpty ? "Enter an email" : null,
-        decoration: InputDecoration(hintText: "Email"),
+        decoration: InputDecoration(
+          hintText: "Email",
+          filled: true,
+          fillColor: Colors.grey[200],
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(
+                width: 0, 
+                style: BorderStyle.none,
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(
+                color: Colors.red[300],
+                width: 2, 
+                style: BorderStyle.solid,
+            ),
+          ),
+        ),
         onChanged: (value) {
           setState(() => email = value.trim());
         },
@@ -113,7 +168,26 @@ class _SignInState extends State<SignIn> {
       SizedBox(height: 10.0),
       TextFormField(
         validator: (value) => value.isEmpty ? "Enter a password" : null,
-        decoration: InputDecoration(hintText: "Password"),
+        decoration: InputDecoration(
+          hintText: "Password",
+          filled: true,
+          fillColor: Colors.grey[200],
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(
+                width: 0, 
+                style: BorderStyle.none,
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(
+                color: Colors.red[300],
+                width: 2, 
+                style: BorderStyle.solid,
+            ),
+          ),
+        ),
         onChanged: (value) {
           setState(() => password = value);
         },
@@ -148,20 +222,91 @@ class _SignInState extends State<SignIn> {
 
   ButtonTheme _barButton(String text, Function onPressed) {
     return ButtonTheme(
-        minWidth: 400.0,
+      minWidth: 150.0,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey[100],
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow( 
+              color: Colors.white,
+              offset: new Offset(-8.0, -8.0), 
+              blurRadius: 10.0,
+              spreadRadius: 1.0
+            ),
+            BoxShadow( 
+              color: Colors.grey[300],
+              offset: new Offset(8.0, 8.0), 
+              blurRadius: 10.0,
+              spreadRadius: 1.0
+            ),
+          ],
+        ),
         child: FlatButton(
           shape: RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(6.0),
+            borderRadius: new BorderRadius.circular(10),
           ),
-          color: Colors.red,
           child: Text(
             text,
             style: TextStyle(
               fontFamily: 'Futura Medium',
-              color: Colors.white,
+              color: Colors.black,
+              fontSize: 15,
             ),
           ),
           onPressed: onPressed,
-        ));
+        ),
+      ),
+    );
   }
+
+  // ButtonTheme _facebookButton() {
+  //   return ButtonTheme(
+  //     minWidth: 100.0,
+  //     child: Container(
+  //       height: 55,
+  //       decoration: BoxDecoration(
+  //         color: Colors.grey[100],
+  //         borderRadius: BorderRadius.circular(10),
+  //         boxShadow: [
+  //           BoxShadow( 
+  //             color: Colors.white,
+  //             offset: new Offset(-8.0, -8.0), 
+  //             blurRadius: 10.0,
+  //             spreadRadius: 1.0
+  //           ),
+  //           BoxShadow( 
+  //             color: Colors.grey[300],
+  //             offset: new Offset(8.0, 8.0), 
+  //             blurRadius: 10.0,
+  //             spreadRadius: 1.0
+  //           ),
+  //         ],
+  //       ),
+  //       child: FlatButton(
+  //         shape: RoundedRectangleBorder(
+  //           borderRadius: new BorderRadius.circular(10),
+  //         ),
+  //         child: Row(
+  //           children: <Widget>[
+  //             Image.asset(
+  //               'assets/Facebook.png',
+  //               height: 40,
+  //             ),
+  //             Padding(padding: EdgeInsets.symmetric(horizontal: 7)),
+  //             Text(
+  //               'Sign in with Facebook',
+  //               style: TextStyle(
+  //                 // fontSize: 10,
+  //                 fontFamily: 'Futura Medium',
+  //                 color: Colors.black,
+  //               ),
+  //             ),
+  //           ]
+  //         ),
+  //         onPressed: null,
+  //       ),
+  //     ),
+  //   );
+  // }
 }

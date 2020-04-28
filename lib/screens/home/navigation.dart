@@ -57,18 +57,18 @@ class _NavigationState extends State<Navigation> {
         },
         children: _children,
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: null,
-      //   backgroundColor: Colors.green,
-      //   child: Icon(
-      //     Icons.local_dining,
-      //     size: 36,
-      //   ),
-      //   elevation: 0,
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: _buildFloatingActionButton(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: null,
+        backgroundColor: Colors.amber[300],
+        child: Icon(
+          Icons.local_dining,
+          size: 36,
+        ),
+        elevation: 0,
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: _buildFloatingActionButton(),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
         notchMargin: 8.0,
@@ -76,7 +76,7 @@ class _NavigationState extends State<Navigation> {
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           iconSize: 30,
-          selectedItemColor: Colors.green[400],
+          selectedItemColor: Colors.amber[300],
           unselectedItemColor: Colors.grey,
           selectedFontSize: 12,
           unselectedFontSize: 12,

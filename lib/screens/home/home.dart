@@ -12,8 +12,8 @@ class _HomePageState extends State<HomePage> {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topRight,
-          end: Alignment(-1, -0.2),
-          colors: [Colors.cyan[200], Colors.blue[400]]
+          end: Alignment(-1, 0.5),
+          colors: [Colors.yellow[300], Colors.amber[400]]
         )
       ),
       child: Scaffold(
@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             fontFamily: 'Futura Medium',
-                            color: Colors.cyan[50],
+                            color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 35,
                           )
@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             fontFamily: 'Futura Medium',
-                            color: Colors.cyan[100],
+                            color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 25,
                           )
@@ -95,11 +95,11 @@ class _HomePageState extends State<HomePage> {
                         padding: EdgeInsets.only(top: 60, left: 15),
                         alignment: Alignment.bottomLeft,
                         child: Text(
-                          'Recommended for you',
+                          'Recommended',
                           style: TextStyle(
                             fontFamily: 'Futura Medium',
                             color: Colors.white,
-                            fontSize: 18,
+                            fontSize: 20,
                           ),
                         ),
                       ),
@@ -120,11 +120,11 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.circular(10),
                                 boxShadow: [
                                   BoxShadow( 
-                                    color: Colors.blue[200],
-                                    offset: new Offset(0.0, 8.0), 
+                                    color: Colors.amber[500],
+                                    offset: new Offset(0, 8.0), 
                                     blurRadius: 10.0,
                                     spreadRadius: 1.0
-                                  )
+                                  ),
                                 ],
                               ),
                               child: Column(
