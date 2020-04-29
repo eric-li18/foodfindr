@@ -7,6 +7,7 @@ import 'package:foodfindr/screens/home/home.dart';
 import 'package:foodfindr/screens/profile/profile.dart';
 import 'package:foodfindr/services/auth.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:foodfindr/screens/foodfinding/food_selections.dart';
 
 class Navigation extends StatefulWidget {
   @override
@@ -55,15 +56,17 @@ class _NavigationState extends State<Navigation> {
               child: new PageView(
             controller: _c,
             onPageChanged: (newPage) {
-              setState(() {
-                this._currentIndex = newPage;
-              });
+              if (newPage != 2) {
+                setState(() {
+                  this._currentIndex = newPage;
+                });
+              }
             },
             children: _children,
           )),
           SlidingUpPanel(
             panel: Center(
-              child: Text("hello "),
+              child: FoodSelections(),
             ),
             borderRadius: radius,
             panelSnapping: true,
@@ -124,19 +127,31 @@ Widget _buildFloatingActionButton() {
   final TextStyle customStyle = TextStyle(inherit: false, color: Colors.black);
   final icons = [
     SpeedDialAction(
-        child: Icon(Icons.person, color: Colors.grey),
+        child: Icon(
+          Icons.person,
+          color: Colors.grey,
+          size: 35.0,
+        ),
         label: Text(
           'Solo',
           style: customStyle,
         )),
     SpeedDialAction(
-        child: Icon(Icons.group_add, color: Colors.grey),
+        child: Icon(
+          Icons.group_add,
+          color: Colors.grey,
+          size: 35,
+        ),
         label: Text(
           'Join',
           style: customStyle,
         )),
     SpeedDialAction(
-        child: Icon(Icons.add, color: Colors.grey),
+        child: Icon(
+          Icons.add,
+          color: Colors.grey,
+          size: 35,
+        ),
         label: Text(
           'Create',
           style: customStyle,
