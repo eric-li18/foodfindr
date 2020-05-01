@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial_material_design/flutter_speed_dial_material_design.dart';
 import 'package:foodfindr/screens/favourites/favourites.dart';
+import 'package:foodfindr/screens/foodfinding/slide_up_panel_tab.dart';
 import 'package:foodfindr/screens/history/history.dart';
 import 'package:foodfindr/screens/home/home.dart';
 import 'package:foodfindr/screens/profile/profile.dart';
 import 'package:foodfindr/services/auth.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'package:foodfindr/screens/foodfinding/food_selections.dart';
 
 class Navigation extends StatefulWidget {
   @override
@@ -65,8 +65,9 @@ class _NavigationState extends State<Navigation> {
             children: _children,
           )),
           SlidingUpPanel(
-            panel: Center(
-              child: FoodSelections(),
+            panel: ClipRRect(
+              child: SlideUpPanelTab(),
+              borderRadius: radius,
             ),
             borderRadius: radius,
             panelSnapping: true,
@@ -121,7 +122,7 @@ class _NavigationState extends State<Navigation> {
 
 PanelController _pc = new PanelController();
 BorderRadiusGeometry radius = BorderRadius.only(
-    topLeft: Radius.circular(24.0), topRight: Radius.circular(24.0));
+    topLeft: Radius.circular(15), topRight: Radius.circular(15));
 
 Widget _buildFloatingActionButton() {
   final TextStyle customStyle = TextStyle(inherit: false, color: Colors.black);
