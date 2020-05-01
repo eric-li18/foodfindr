@@ -22,6 +22,7 @@ class _HomePageState extends State<HomePage> {
           slivers: <Widget>[
             SliverAppBar(
               backgroundColor: Colors.transparent,
+              elevation: 0,
               floating: true,
               snap: true,
               // title: Text(
@@ -34,14 +35,20 @@ class _HomePageState extends State<HomePage> {
               //   )
               // ),
               actions: <Widget>[
-                IconButton(
-                  icon: Icon(
-                    Icons.map,
+                Container(
+                  decoration: BoxDecoration(
                     color: Colors.white,
-                    size: 25,
+                    shape: BoxShape.circle,
                   ),
-                  onPressed: null,
-                )
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.map,
+                      color: Colors.amber[300],
+                      size: 25,
+                    ),
+                    onPressed: null,
+                  )
+                ),
               ],
             ),
 
@@ -144,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                                       // ],
                                       image: DecorationImage(
                                         image: ExactAssetImage(
-                                          'assets/Watermelon.jpg'
+                                          'assets/images/Watermelon.jpg'
                                         ),
                                         fit: BoxFit.cover
                                       ),
@@ -177,108 +184,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
 
-            // SliverToBoxAdapter(
-            //   child: Container(
-            //     // color: Colors.white,
-            //     child: Text(
-            //       'Recommended for you',
-            //       style: TextStyle(
-            //         fontFamily: 'Futura Medium',
-            //         color: Colors.black,
-            //         fontSize: 18,
-            //         // fontWeight: FontWeight.bold,
-            //       ),
-            //     ),
-            //     padding: EdgeInsets.only(left: 15),
-            //   )
-            // ),
-
-            // SliverToBoxAdapter(
-            //   child: Container(
-            //     // color: Colors.white,
-            //     height: 160,
-            //     child: ListView.builder(
-            //       padding: EdgeInsets.only(left: 15, top: 5),
-            //       scrollDirection: Axis.horizontal,
-            //       itemCount: 10,
-            //       itemBuilder: (BuildContext context, int index) {
-            //         return Container(
-            //           width: 150.0,
-            //           // color: Colors.white,
-            //           margin: EdgeInsets.only(right: 10, bottom: 20),
-            //           decoration: BoxDecoration(
-            //             color: Colors.white,
-            //             borderRadius: BorderRadius.circular(10),
-            //             // boxShadow: [
-            //             //   new BoxShadow( 
-            //             //     color: Colors.grey[300],
-            //             //     offset: new Offset(0.0, 8.0), 
-            //             //     blurRadius: 10.0,
-            //             //     spreadRadius: 1.0
-            //             //   )
-            //             // ],
-            //           ),
-            //           child: Column(
-            //             children: <Widget> [
-            //               Container(
-            //                 height: 110,
-            //                 // margin: EdgeInsets.only(left: 5, right: 5),
-            //                 alignment: Alignment.center,
-            //                 decoration: ShapeDecoration(
-            //                   // shadows: [
-            //                   //   new BoxShadow(
-            //                   //     color: Colors.grey[300],
-            //                   //     offset: new Offset(0.0, 8.0), 
-            //                   //     blurRadius: 10.0,
-            //                   //     spreadRadius: 1.0
-            //                   //   )
-            //                   // ],
-            //                   image: DecorationImage(
-            //                     image: ExactAssetImage(
-            //                       'assets/Watermelon.jpg'
-            //                     ),
-            //                     fit: BoxFit.cover
-            //                   ),
-            //                   shape: RoundedRectangleBorder(
-            //                     borderRadius: BorderRadiusDirectional.circular(10)
-            //                   )
-            //                 ),
-            //               ),
-            //               Container(
-            //                 padding: EdgeInsets.only(top: 5, left: 10),
-            //                 alignment: Alignment.bottomLeft,
-            //                 child: Text(
-            //                   'Watermelon Sugar',
-            //                   style: TextStyle(
-            //                     color: Colors.black,
-            //                     fontFamily: 'Futura Medium',
-            //                     fontSize: 13,
-            //                   ),
-            //                 ),
-            //               ),
-            //             ]
-            //           ),
-            //         );
-            //       },
-            //     ),
-            //   ),
-            // ),
-
-            // SliverToBoxAdapter(
-            //   child: Container(
-            //     height: 30,
-            //     decoration: ShapeDecoration(
-            //       color: Colors.white,
-            //       shape: RoundedRectangleBorder(
-            //         borderRadius: BorderRadiusDirectional.only(
-            //           topStart: Radius.circular(20),
-            //           topEnd: Radius.circular(20)
-            //         )
-            //       )
-            //     ),
-            //   )
-            // ),
-
             SliverToBoxAdapter(
               child: Container(
                 // color: Colors.white,
@@ -310,7 +215,7 @@ class _HomePageState extends State<HomePage> {
                 (BuildContext context, int index) {
                   return Container(
                     color: Colors.white,
-                    padding: EdgeInsets.only(left: 15, right: 15),
+                    // padding: EdgeInsets.only(left: 15, right: 15),
                     // margin: EdgeInsets.only(left: 15, right: 15, bottom: 19),
                     // decoration: BoxDecoration(
                     //   color: Colors.white,
@@ -324,44 +229,59 @@ class _HomePageState extends State<HomePage> {
                     //     )
                     //   ],
                     // ),
-                    child: Column(
-                      children: <Widget> [
-                        Container(
-                          height: 200,
-                          alignment: Alignment.center,
-                          decoration: ShapeDecoration(
-                            shadows: [
-                              new BoxShadow(
-                                color: Colors.grey[300],
-                                offset: new Offset(0.0, 10.0), 
-                                blurRadius: 10.0,
-                                spreadRadius: 1.0
-                              )
-                            ],
-                            image: DecorationImage(
-                              image: ExactAssetImage(
-                                'assets/Ramen.jpg'
+                    child: Container(
+                      margin: EdgeInsets.only(left: 15, right: 15, bottom: 19),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          new BoxShadow( 
+                            color: Colors.grey[300],
+                            offset: new Offset(0.0, 10.0), 
+                            blurRadius: 10.0,
+                            spreadRadius: 1.0
+                          )
+                        ],
+                      ),
+                      child: Column(
+                        children: <Widget> [
+                          Container(
+                            height: 200,
+                            alignment: Alignment.center,
+                            decoration: ShapeDecoration(
+                              shadows: [
+                                new BoxShadow(
+                                  color: Colors.grey[300],
+                                  offset: new Offset(0.0, 10.0), 
+                                  blurRadius: 10.0,
+                                  spreadRadius: 1.0
+                                )
+                              ],
+                              image: DecorationImage(
+                                image: ExactAssetImage(
+                                  'assets/images/Ramen.jpg'
+                                ),
+                                fit: BoxFit.cover
                               ),
-                              fit: BoxFit.cover
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadiusDirectional.circular(10)
-                            )
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: 10, top: 6),
-                          alignment: Alignment.bottomLeft,
-                          child: Text(
-                            'Sushi Tien',
-                            style: TextStyle(
-                              fontFamily: 'Futura Medium',
-                              color: Colors.black,
-                              fontSize: 15,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadiusDirectional.circular(10)
+                              )
                             ),
                           ),
-                        ),
-                      ]
+                          Container(
+                            padding: EdgeInsets.only(left: 10, top: 6),
+                            alignment: Alignment.bottomLeft,
+                            child: Text(
+                              'Sushi Tien',
+                              style: TextStyle(
+                                fontFamily: 'Futura Medium',
+                                color: Colors.black,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ),
+                        ]
+                      ),
                     ),
                   );
                 },
