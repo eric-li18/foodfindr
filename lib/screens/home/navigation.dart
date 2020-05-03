@@ -34,7 +34,7 @@ class _NavigationState extends State<Navigation> {
   PageController _c;
   @override
   void initState() {
-    _c = new PageController(
+    _c =  PageController(
       initialPage: _currentIndex,
     );
     super.initState();
@@ -55,14 +55,25 @@ class _NavigationState extends State<Navigation> {
       body: Stack(
         children: <Widget>[
           Center(
-              child: new PageView(
+              child: PageView(
             controller: _c,
             onPageChanged: (newPage) {
-              if (newPage != 2) {
+              //if (newPage != 2) { // controls the icon
                 setState(() {
-                  this._currentIndex = newPage;
+                  if (newPage == 2 && _currentIndex == 1) {
+                    _currentIndex = newPage + 1;
+                    _c.nextPage(duration:  const Duration(milliseconds: 500), curve: Curves.ease, );
+                  } else if (newPage == 2 && _currentIndex == 3) {
+                    _currentIndex = newPage - 1;
+                    _c.previousPage(duration:  const Duration(milliseconds: 500), curve: Curves.ease, );
+                    print('hello');
+                  } else {
+                    _currentIndex = newPage;
+                  }
+                  
+                  //this._currentIndex = newPage;
                 });
-              }
+              //}
             },
             children: _children,
           )),
@@ -94,7 +105,7 @@ class _NavigationState extends State<Navigation> {
           selectedFontSize: 12,
           unselectedFontSize: 12,
           onTap: (index) {
-            _c.animateToPage(index != 2 ? index : null,
+            _c.animateToPage(index != 2 ? index : _currentIndex,
                 duration: const Duration(milliseconds: 500),
                 curve: Curves.easeInOut);
           },
