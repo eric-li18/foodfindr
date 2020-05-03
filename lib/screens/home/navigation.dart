@@ -20,12 +20,14 @@ class _NavigationState extends State<Navigation> {
   List<Widget> _children = <Widget>[
     HomePage(),
     Favourite(),
+    null,
     History(),
     Profile()
   ];
   void onItemTapped(index) {
     setState(() {
-      _currentIndex = index;
+      index == 2 ? index = _currentIndex : _currentIndex = index; 
+      //_currentIndex = index;
     });
   }
 
@@ -56,11 +58,11 @@ class _NavigationState extends State<Navigation> {
               child: new PageView(
             controller: _c,
             onPageChanged: (newPage) {
-              //if (newPage != 2) {
+              if (newPage != 2) {
                 setState(() {
                   this._currentIndex = newPage;
                 });
-              //}
+              }
             },
             children: _children,
           )),
@@ -92,7 +94,7 @@ class _NavigationState extends State<Navigation> {
           selectedFontSize: 12,
           unselectedFontSize: 12,
           onTap: (index) {
-            _c.animateToPage(index,
+            _c.animateToPage(index != 2 ? index : null,
                 duration: const Duration(milliseconds: 500),
                 curve: Curves.easeInOut);
           },
@@ -102,7 +104,7 @@ class _NavigationState extends State<Navigation> {
           items: [
             navIcon("Home", Icons.home),
             navIcon("Fav", Icons.favorite),
-            //navIcon("", Icons.account_circle),
+            navIcon("", Icons.account_circle),
             navIcon("History", Icons.history),
             navIcon("Profile", Icons.account_circle),
           ],

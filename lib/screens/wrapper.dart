@@ -9,12 +9,19 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
     // return either Home or Authenticate widget
-    return user == null ? Authenticate() : MaterialApp(home:Navigation(), theme: ThemeData(
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: Colors.green, 
-        elevation: 0, ),
-      //buttonTheme: ButtonThemeData(buttonColor: Colors.green),
-        ),
-        );
+    return user == null
+        ? Authenticate()
+        : MaterialApp(
+            home: Navigation(),
+            theme: ThemeData(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              floatingActionButtonTheme: FloatingActionButtonThemeData(
+                backgroundColor: Colors.green,
+                elevation: 0,
+              ),
+              //buttonTheme: ButtonThemeData(buttonColor: Colors.green),
+            ),
+          );
   }
 }
