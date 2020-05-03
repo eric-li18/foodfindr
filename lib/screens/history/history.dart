@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
+import 'history_card.dart';
 //import 'package:foodfindr/screens/home/navigation.dart';
 
 class History extends StatefulWidget {
@@ -26,22 +28,21 @@ class _HistoryState extends State<History> {
         ],
       ),
       child: Column(children: <Widget>[
-        Container(
-          height: 200,
-          alignment: Alignment.center,
-          decoration: ShapeDecoration(
-              shadows: [
-                new BoxShadow(
-                    color: Colors.grey[300],
-                    offset: new Offset(0.0, 10.0),
-                    blurRadius: 10.0,
-                    spreadRadius: 1.0)
-              ],
-              image: DecorationImage(
-                  image: ExactAssetImage('assets/images/Ramen.jpg'),
-                  fit: BoxFit.cover),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadiusDirectional.circular(10))),
+        InkWell(
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => HistoryCard()));
+          },
+          child: Container(
+            height: 200,
+            alignment: Alignment.center,
+            decoration: ShapeDecoration(
+                image: DecorationImage(
+                    image: ExactAssetImage('assets/images/Ramen.jpg'),
+                    fit: BoxFit.cover),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadiusDirectional.circular(10))),
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

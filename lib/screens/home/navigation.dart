@@ -171,6 +171,7 @@ Widget _buildFloatingActionButton() {
     ),
     useRotateAnimation: true,
     onAction: _onSpeedDialAction,
+    isDismissible: true,
   );
 }
 
