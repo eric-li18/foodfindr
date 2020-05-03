@@ -56,11 +56,11 @@ class _NavigationState extends State<Navigation> {
               child: new PageView(
             controller: _c,
             onPageChanged: (newPage) {
-              if (newPage != 2) {
+              //if (newPage != 2) {
                 setState(() {
                   this._currentIndex = newPage;
                 });
-              }
+              //}
             },
             children: _children,
           )),
@@ -102,8 +102,9 @@ class _NavigationState extends State<Navigation> {
           items: [
             navIcon("Home", Icons.home),
             navIcon("Fav", Icons.favorite),
+            //navIcon("", Icons.account_circle),
             navIcon("History", Icons.history),
-            navIcon("Profile", Icons.account_circle)
+            navIcon("Profile", Icons.account_circle),
           ],
         ),
       ),

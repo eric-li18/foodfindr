@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
-import 'history_card.dart';
+import 'package:foodfindr/screens/history/historyCardClicked.dart';
 //import 'package:foodfindr/screens/home/navigation.dart';
 
 class History extends StatefulWidget {
@@ -11,7 +10,28 @@ class History extends StatefulWidget {
 }
 
 class _HistoryState extends State<History> {
-  double _rating;
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+          slivers: <Widget> [SliverFixedExtentList(
+                itemExtent: 250,
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                    return HistoryCard();
+                  },
+                ),
+              ),
+          ]
+    );
+    //return HistoryCard();
+  }
+}
+
+class HistoryCard extends StatelessWidget {
+  const HistoryCard({
+    Key key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,7 +51,7 @@ class _HistoryState extends State<History> {
         InkWell(
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => HistoryCard()));
+                MaterialPageRoute(builder: (context) => HistoryCardClicked()));
           },
           child: Container(
             height: 200,
@@ -87,11 +107,11 @@ class _HistoryState extends State<History> {
                   Icons.thumb_up,
                   color: Colors.green[300],
                 ),
-                onRatingUpdate: (rating) {
-                  setState(() {
-                    _rating = rating;
-                  });
-                },
+                // onRatingUpdate: (rating) {
+                //   setState(() {
+                //     _rating = rating;
+                //   });
+                // },
               ),
             )
           ],
