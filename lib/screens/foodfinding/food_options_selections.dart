@@ -16,11 +16,16 @@ class _FoodOptionsSelectionsState extends State<FoodOptionsSelections> {
   bool dessert = false;
   bool lateNight = false;
 
+  double _value = 5;
+
   @override
   Widget build(BuildContext context) {
     return Container(
         child: Column(
       children: <Widget>[
+        SizedBox(
+          height: 10,
+        ),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -145,6 +150,63 @@ class _FoodOptionsSelectionsState extends State<FoodOptionsSelections> {
                     side: BorderSide(color: Colors.black, width: 0.25))),
           ],
         ),
+        SizedBox(
+          height: 35,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text("5km"),
+            SliderTheme(
+                child: Slider(
+                  min: 5,
+                  max: 50,
+                  divisions: 10,
+                  label: '$_value',
+                  value: _value,
+                  onChanged: (value) {
+                    setState(() {
+                      _value = value;
+                    });
+                  },
+                ),
+                data: SliderTheme.of(context).copyWith(
+                  activeTrackColor: Colors.green[400],
+                  inactiveTrackColor: Colors.green[100],
+                  trackShape: RoundedRectSliderTrackShape(),
+                  trackHeight: 4,
+                  thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12),
+                  overlayColor: Colors.green.withAlpha(32),
+                  overlayShape: RoundSliderOverlayShape(overlayRadius: 28),
+                  thumbColor: Colors.green[600],
+                  tickMarkShape: RoundSliderTickMarkShape(),
+                  activeTickMarkColor: Colors.green[400],
+                  inactiveTickMarkColor: Colors.green[100],
+                  valueIndicatorShape: PaddleSliderValueIndicatorShape(),
+                  valueIndicatorColor: Colors.green[400],
+                  valueIndicatorTextStyle: TextStyle(color: Colors.white),
+                )),
+            Text("50km"),
+          ],
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+              color: Colors.black,
+              child: Text(
+                "Start",
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: () {},
+            )
+          ],
+        )
       ],
     ));
   }
