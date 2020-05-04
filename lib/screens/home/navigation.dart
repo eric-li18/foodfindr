@@ -20,19 +20,21 @@ class _NavigationState extends State<Navigation> {
   List<Widget> _children = <Widget>[
     HomePage(),
     Favourite(),
+    null,
     History(),
     Profile()
   ];
   void onItemTapped(index) {
     setState(() {
-      _currentIndex = index;
+      index == 2 ? index = _currentIndex : _currentIndex = index; 
+      //_currentIndex = index;
     });
   }
 
   PageController _c;
   @override
   void initState() {
-    _c = new PageController(
+    _c =  PageController(
       initialPage: _currentIndex,
     );
     super.initState();
@@ -53,14 +55,25 @@ class _NavigationState extends State<Navigation> {
       body: Stack(
         children: <Widget>[
           Center(
-              child: new PageView(
+              child: PageView(
             controller: _c,
             onPageChanged: (newPage) {
-              if (newPage != 2) {
+              //if (newPage != 2) { // controls the icon
                 setState(() {
-                  this._currentIndex = newPage;
+                  if (newPage == 2 && _currentIndex == 1) {
+                    _currentIndex = newPage + 1;
+                    _c.nextPage(duration:  const Duration(milliseconds: 500), curve: Curves.ease, );
+                  } else if (newPage == 2 && _currentIndex == 3) {
+                    _currentIndex = newPage - 1;
+                    _c.previousPage(duration:  const Duration(milliseconds: 500), curve: Curves.ease, );
+                    print('hello');
+                  } else {
+                    _currentIndex = newPage;
+                  }
+                  
+                  //this._currentIndex = newPage;
                 });
-              }
+              //}
             },
             children: _children,
           )),
@@ -92,7 +105,7 @@ class _NavigationState extends State<Navigation> {
           selectedFontSize: 12,
           unselectedFontSize: 12,
           onTap: (index) {
-            _c.animateToPage(index,
+            _c.animateToPage(index != 2 ? index : _currentIndex,
                 duration: const Duration(milliseconds: 500),
                 curve: Curves.easeInOut);
           },
@@ -102,8 +115,9 @@ class _NavigationState extends State<Navigation> {
           items: [
             navIcon("Home", Icons.home),
             navIcon("Fav", Icons.favorite),
+            navIcon("", Icons.account_circle),
             navIcon("History", Icons.history),
-            navIcon("Profile", Icons.account_circle)
+            navIcon("Profile", Icons.account_circle),
           ],
         ),
       ),
@@ -171,6 +185,7 @@ Widget _buildFloatingActionButton() {
     ),
     useRotateAnimation: true,
     onAction: _onSpeedDialAction,
+    isDismissible: true,
   );
 }
 
