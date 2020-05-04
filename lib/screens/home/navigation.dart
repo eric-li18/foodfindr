@@ -41,15 +41,15 @@ class _NavigationState extends State<Navigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CupertinoNavigationBar(
-        trailing: FlatButton.icon(
-          onPressed: () {
-            AuthService().signOut();
-          },
-          icon: Icon(Icons.person),
-          label: Text("Logout"),
-        ),
-      ),
+      // appBar: CupertinoNavigationBar(
+      //   trailing: FlatButton.icon(
+      //     onPressed: () {
+      //       AuthService().signOut();
+      //     },
+      //     icon: Icon(Icons.person),
+      //     label: Text("Logout"),
+      //   ),
+      // ),
       body: Stack(
         children: <Widget>[
           Center(
