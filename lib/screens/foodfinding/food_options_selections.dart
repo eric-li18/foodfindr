@@ -192,21 +192,21 @@ class _FoodOptionsSelectionsState extends State<FoodOptionsSelections> {
         SizedBox(
           height: 20,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            RaisedButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)),
-              color: Colors.black,
-              child: Text(
-                "Start",
-                style: TextStyle(color: Colors.white),
-              ),
-              onPressed: () {},
-            )
-          ],
-        )
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: <Widget>[
+        //     RaisedButton(
+        //       shape: RoundedRectangleBorder(
+        //           borderRadius: BorderRadius.circular(15)),
+        //       color: Colors.black,
+        //       child: Text(
+        //         "Start",
+        //         style: TextStyle(color: Colors.white),
+        //       ),
+        //       onPressed: () {},
+        //     )
+        //   ],
+        // )
       ],
     ));
   }
