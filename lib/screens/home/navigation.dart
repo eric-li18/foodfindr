@@ -26,7 +26,7 @@ class _NavigationState extends State<Navigation> {
   ];
   void onItemTapped(index) {
     setState(() {
-      index == 2 ? index = _currentIndex : _currentIndex = index; 
+      index == 2 ? index = _currentIndex : _currentIndex = index;
       //_currentIndex = index;
     });
   }
@@ -34,7 +34,7 @@ class _NavigationState extends State<Navigation> {
   PageController _c;
   @override
   void initState() {
-    _c =  PageController(
+    _c = PageController(
       initialPage: _currentIndex,
     );
     super.initState();
@@ -59,20 +59,26 @@ class _NavigationState extends State<Navigation> {
             controller: _c,
             onPageChanged: (newPage) {
               //if (newPage != 2) { // controls the icon
-                setState(() {
-                  if (newPage == 2 && _currentIndex == 1) {
-                    _currentIndex = newPage + 1;
-                    _c.nextPage(duration:  const Duration(milliseconds: 500), curve: Curves.ease, );
-                  } else if (newPage == 2 && _currentIndex == 3) {
-                    _currentIndex = newPage - 1;
-                    _c.previousPage(duration:  const Duration(milliseconds: 500), curve: Curves.ease, );
-                    print('hello');
-                  } else {
-                    _currentIndex = newPage;
-                  }
-                  
-                  //this._currentIndex = newPage;
-                });
+              setState(() {
+                if (newPage == 2 && _currentIndex == 1) {
+                  _currentIndex = newPage + 1;
+                  _c.nextPage(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.ease,
+                  );
+                } else if (newPage == 2 && _currentIndex == 3) {
+                  _currentIndex = newPage - 1;
+                  _c.previousPage(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.ease,
+                  );
+                  print('hello');
+                } else {
+                  _currentIndex = newPage;
+                }
+
+                //this._currentIndex = newPage;
+              });
               //}
             },
             children: _children,

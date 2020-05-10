@@ -59,6 +59,12 @@ flutter:
     - assets/images/Sky.jpg
     - assets/images/Watermelon.jpg
     - assets/images/Ramen.jpg
+    - assets/images/american.jpg
+    - assets/images/chinese.jpg
+    - assets/images/korean.jpg
+    - assets/images/italian.jpg
+    - assets/images/japanese.jpg
+    - assets/images/mexican.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
