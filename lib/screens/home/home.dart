@@ -28,13 +28,13 @@ class _HomePageState extends State<HomePage> {
               actions: <Widget>[
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.yellow[300].withOpacity(0.5),
                     shape: BoxShape.circle,
                   ),
                   child: IconButton(
                     icon: Icon(
                       Icons.map,
-                      color: Colors.amber[300],
+                      color: Color(0xff61451c),
                       size: 25,
                     ),
                     onPressed: null,
@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             fontFamily: 'Futura Medium',
-                            color: Colors.white,
+                            color: Color(0xff61451c),
                             fontWeight: FontWeight.bold,
                             fontSize: 35,
                           )
@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             fontFamily: 'Futura Medium',
-                            color: Colors.white,
+                            color: Color(0xff61451c),
                             fontWeight: FontWeight.bold,
                             fontSize: 25,
                           )
@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                           'Recommended',
                           style: TextStyle(
                             fontFamily: 'Futura Medium',
-                            color: Colors.white,
+                            color: Color(0xff61451c),
                             fontSize: 20,
                           ),
                         ),
@@ -155,7 +155,7 @@ Widget _recommanded() {
           width: 250.0,
           margin: EdgeInsets.only(right: 10, bottom: 20),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Colors.white.withOpacity(0.6),
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow( 
@@ -189,7 +189,7 @@ Widget _recommanded() {
                 child: Text(
                   'Watermelon Sugar',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Color(0xff61451c),
                     fontFamily: 'Futura Medium',
                     fontSize: 13,
                   ),
