@@ -24,114 +24,82 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       body: Container(
-        padding: EdgeInsets.only(top: 80.0, left: 30.0, right: 30.0),
+        padding: EdgeInsets.only(top: 100.0, left: 30.0, right: 30.0),
         child: Form(
           key: _formKey,
           child: Column(
-              // mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  "Hello",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 40,
-                    color: Colors.black,
-                    fontFamily: 'Futura Medium',
-                  ),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                "Hello",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 40,
+                  color: Colors.black,
+                  fontFamily: 'Futura Medium',
                 ),
-                Text(
-                  "Welcome aboard",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
-                    fontFamily: 'Futura Medium',
-                  ),
+              ),
+              Text(
+                "Welcome aboard",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                  fontFamily: 'Futura Medium',
                 ),
-                Padding(padding: EdgeInsets.only(top: 40)),
-                _emailAndPasswordForms(),
-                SizedBox(height: 7.0),
-                Text(error),
-                SizedBox(height: 3.0),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget> [
-                      _barButton("Sign in", () async {
-                        if (_formKey.currentState.validate()) {
-                          dynamic result =
-                              await _auth.signInWithEmail(email, password);
-                          if (result == null) {
-                            setState(() {
-                              error = "Please supply a valid email";
-                            });
-                          }
+              ),
+              Padding(padding: EdgeInsets.only(top: 40)),
+              _emailAndPasswordForms(),
+              SizedBox(height: 7.0),
+              Text(error),
+              SizedBox(height: 3.0),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget> [
+                    _barButton("Sign in", () async {
+                      if (_formKey.currentState.validate()) {
+                        dynamic result =
+                            await _auth.signInWithEmail(email, password);
+                        if (result == null) {
+                          setState(() {
+                            error = "Please supply a valid email";
+                          });
                         }
-                      }),
-                      Padding(padding: EdgeInsets.symmetric(horizontal: 15)),
-                      _barButton("Register", () {
-                        widget.toggleSignedIn();
-                      }),
-                    ]
-                  ),
+                      }
+                    }),
+                    Padding(padding: EdgeInsets.symmetric(horizontal: 15)),
+                    _barButton("Register", () {
+                      widget.toggleSignedIn();
+                    }),
+                  ]
                 ),
-                Padding(padding: EdgeInsets.symmetric(vertical: 8)),
-                _signInDivider(),
-                Padding(padding: EdgeInsets.symmetric(vertical: 7)),
-                // Row(
-                // children: <Widget>[
-                // Expanded(child: SizedBox(width: 1.0)),
-                Container(
-                  alignment: Alignment.center,
-                  child: Column(
-                    children: <Widget>[
-                      SignInButton(Buttons.Facebook, onPressed: () {
-                        AuthService().signInWithFacebook();
-                      }),
-                      SignInButton(Buttons.GoogleDark, onPressed: () {
-                        AuthService().signInWithGoogle();
-                      }),
-                      SignInButtonBuilder(
-                        text: 'Sign in Anonymously',
-                        icon: Icons.person_outline,
-                        onPressed: () {AuthService().signInAnon();},
-                        backgroundColor: Colors.blueGrey[700],
-                      )
-                    ]
-                  )
+              ),
+              Padding(padding: EdgeInsets.symmetric(vertical: 18)),
+              _signInDivider(),
+              Padding(padding: EdgeInsets.symmetric(vertical: 14)),
+              Container(
+                alignment: Alignment.center,
+                child: Column(
+                  children: <Widget>[
+                    SignInButton(Buttons.Facebook, onPressed: () {
+                      AuthService().signInWithFacebook();
+                    }),
+                    SignInButton(Buttons.GoogleDark, onPressed: () {
+                      AuthService().signInWithGoogle();
+                    }),
+                    SignInButtonBuilder(
+                      text: 'Sign in Anonymously',
+                      icon: Icons.person_outline,
+                      onPressed: () {AuthService().signInAnon();},
+                      backgroundColor: Colors.blueGrey[700],
+                    )
+                  ]
                 )
-                // RaisedButton.icon(icon: FaIcon(FontAwesomeIcons.google), onPressed: () {print("hello");},)
-                // Expanded(child: SizedBox(width: 1.0)),
-                // SizedBox.fromSize(
-                //   size: Size(40, 40),
-                //   child: ClipOval(
-                //     child: Material(
-                //       color: Colors.grey[850],
-                //       child: InkWell(
-                //         onTap: () {
-                //           AuthService().signInWithGoogle();
-                //         },
-                //         child: Column(
-                //           mainAxisAlignment: MainAxisAlignment.center,
-                //           children: <Widget>[
-                //             FaIcon(FontAwesomeIcons.google,
-                //                 color: Colors.white),
-                //           ],
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ),
-
-                // Expanded(child: SizedBox(width: 1.0)),
-                
-                // Expanded(child: SizedBox(width: 1.0)),
-                // ],
-                // ),
-              ]),
+              )
+            ]
+          ),
         ),
       ),
     );

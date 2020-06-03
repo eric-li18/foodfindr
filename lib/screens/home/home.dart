@@ -25,25 +25,16 @@ class _HomePageState extends State<HomePage> {
               elevation: 0,
               floating: true,
               snap: true,
-              // title: Text(
-              //   'FoodFindr',
-              //   style: TextStyle(
-              //     fontFamily: 'Futura Medium',
-              //     color: Colors.black,
-              //     fontWeight: FontWeight.bold,
-              //     fontSize: 35,
-              //   )
-              // ),
               actions: <Widget>[
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.yellow[300].withOpacity(0.5),
                     shape: BoxShape.circle,
                   ),
                   child: IconButton(
                     icon: Icon(
                       Icons.map,
-                      color: Colors.amber[300],
+                      color: Color(0xff61451c),
                       size: 25,
                     ),
                     onPressed: null,
@@ -58,13 +49,6 @@ class _HomePageState extends State<HomePage> {
               expandedHeight: 430,
               flexibleSpace: FlexibleSpaceBar(
                 background: Container(
-                  // decoration: BoxDecoration(
-                  //   gradient: LinearGradient(
-                  //     begin: Alignment.topRight,
-                  //     end: Alignment.bottomLeft,
-                  //     colors: [Colors.cyan[200], Colors.green[400]]
-                  //   )
-                  // ),
                   child: Column(
                     children: <Widget>[
                       Container(
@@ -78,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             fontFamily: 'Futura Medium',
-                            color: Colors.white,
+                            color: Color(0xff61451c),
                             fontWeight: FontWeight.bold,
                             fontSize: 35,
                           )
@@ -92,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             fontFamily: 'Futura Medium',
-                            color: Colors.white,
+                            color: Color(0xff61451c),
                             fontWeight: FontWeight.bold,
                             fontSize: 25,
                           )
@@ -105,79 +89,12 @@ class _HomePageState extends State<HomePage> {
                           'Recommended',
                           style: TextStyle(
                             fontFamily: 'Futura Medium',
-                            color: Colors.white,
+                            color: Color(0xff61451c),
                             fontSize: 20,
                           ),
                         ),
                       ),
-                      Container(
-                        // color: Colors.white,
-                        height: 180,
-                        child: ListView.builder(
-                          padding: EdgeInsets.only(left: 15, top: 5),
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 10,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Container(
-                              width: 250.0,
-                              // color: Colors.white,
-                              margin: EdgeInsets.only(right: 10, bottom: 20),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: [
-                                  BoxShadow( 
-                                    color: Colors.amber[500],
-                                    offset: new Offset(0, 8.0), 
-                                    blurRadius: 10.0,
-                                    spreadRadius: 1.0
-                                  ),
-                                ],
-                              ),
-                              child: Column(
-                                children: <Widget> [
-                                  Container(
-                                    height: 130,
-                                    // margin: EdgeInsets.only(left: 5, right: 5),
-                                    alignment: Alignment.center,
-                                    decoration: ShapeDecoration(
-                                      // shadows: [
-                                      //   new BoxShadow(
-                                      //     color: Colors.grey[300],
-                                      //     offset: new Offset(0.0, 8.0), 
-                                      //     blurRadius: 10.0,
-                                      //     spreadRadius: 1.0
-                                      //   )
-                                      // ],
-                                      image: DecorationImage(
-                                        image: ExactAssetImage(
-                                          'assets/images/Watermelon.jpg'
-                                        ),
-                                        fit: BoxFit.cover
-                                      ),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadiusDirectional.circular(10)
-                                      )
-                                    ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.only(top: 5, left: 10),
-                                    alignment: Alignment.bottomLeft,
-                                    child: Text(
-                                      'Watermelon Sugar',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontFamily: 'Futura Medium',
-                                        fontSize: 13,
-                                      ),
-                                    ),
-                                  ),
-                                ]
-                              ),
-                            );
-                          },
-                        ),
-                      ),
+                      _recommanded(),
                     ],
                   ),
                 )
@@ -186,7 +103,6 @@ class _HomePageState extends State<HomePage> {
 
             SliverToBoxAdapter(
               child: Container(
-                // color: Colors.white,
                 padding: EdgeInsets.only(left: 15, bottom: 15, top: 30),
                 decoration: ShapeDecoration(
                   color: Colors.white,
@@ -215,74 +131,7 @@ class _HomePageState extends State<HomePage> {
                 (BuildContext context, int index) {
                   return Container(
                     color: Colors.white,
-                    // padding: EdgeInsets.only(left: 15, right: 15),
-                    // margin: EdgeInsets.only(left: 15, right: 15, bottom: 19),
-                    // decoration: BoxDecoration(
-                    //   color: Colors.white,
-                    //   borderRadius: BorderRadius.circular(10),
-                    //   boxShadow: [
-                    //     new BoxShadow( 
-                    //       color: Colors.grey[300],
-                    //       offset: new Offset(0.0, 10.0), 
-                    //       blurRadius: 10.0,
-                    //       spreadRadius: 1.0
-                    //     )
-                    //   ],
-                    // ),
-                    child: Container(
-                      margin: EdgeInsets.only(left: 15, right: 15, bottom: 19),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          new BoxShadow( 
-                            color: Colors.grey[300],
-                            offset: new Offset(0.0, 10.0), 
-                            blurRadius: 10.0,
-                            spreadRadius: 1.0
-                          )
-                        ],
-                      ),
-                      child: Column(
-                        children: <Widget> [
-                          Container(
-                            height: 200,
-                            alignment: Alignment.center,
-                            decoration: ShapeDecoration(
-                              shadows: [
-                                new BoxShadow(
-                                  color: Colors.grey[300],
-                                  offset: new Offset(0.0, 10.0), 
-                                  blurRadius: 10.0,
-                                  spreadRadius: 1.0
-                                )
-                              ],
-                              image: DecorationImage(
-                                image: ExactAssetImage(
-                                  'assets/images/Ramen.jpg'
-                                ),
-                                fit: BoxFit.cover
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadiusDirectional.circular(10)
-                              )
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(left: 10, top: 6),
-                            alignment: Alignment.bottomLeft,
-                            child: Text(
-                              'Sushi Tien',
-                              style: TextStyle(
-                                fontFamily: 'Futura Medium',
-                                color: Colors.black,
-                                fontSize: 15,
-                              ),
-                            ),
-                          ),
-                        ]
-                      ),
-                    ),
+                    child: _whatsNearby(),
                   );
                 },
               ),
@@ -291,28 +140,122 @@ class _HomePageState extends State<HomePage> {
         )
       )
     );
-
-    // return Scaffold(
-    //   backgroundColor: Colors.white,
-    //   appBar: AppBar(
-    //     backgroundColor: Colors.red[600],
-    //     elevation: 0.0,
-    //     centerTitle: true,
-    //     title: Text('Home'),
-    //     actions: <Widget>[
-    //       FlatButton.icon(
-    //         onPressed: () {
-    //           AuthService().signOut();
-    //         },
-    //         icon: Icon(Icons.person),
-    //         label: Text("Logout"),
-    //       )
-    //     ],
-    //   ),
-    //   bottomNavigationBar: Navigation(),
-    // );
-
-
-
   }
+}
+
+Widget _recommanded() {
+  return Container(
+    height: 180,
+    child: ListView.builder(
+      padding: EdgeInsets.only(left: 15, top: 5),
+      scrollDirection: Axis.horizontal,
+      itemCount: 10,
+      itemBuilder: (BuildContext context, int index) {
+        return Container(
+          width: 250.0,
+          margin: EdgeInsets.only(right: 10, bottom: 20),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.6),
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow( 
+                color: Colors.amber[500],
+                offset: new Offset(0, 8.0), 
+                blurRadius: 10.0,
+                spreadRadius: 1.0
+              ),
+            ],
+          ),
+          child: Column(
+            children: <Widget> [
+              Container(
+                height: 130,
+                alignment: Alignment.center,
+                decoration: ShapeDecoration(
+                  image: DecorationImage(
+                    image: ExactAssetImage(
+                      'assets/images/Watermelon.jpg'
+                    ),
+                    fit: BoxFit.cover
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadiusDirectional.circular(10)
+                  )
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 5, left: 10),
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  'Watermelon Sugar',
+                  style: TextStyle(
+                    color: Color(0xff61451c),
+                    fontFamily: 'Futura Medium',
+                    fontSize: 13,
+                  ),
+                ),
+              ),
+            ]
+          ),
+        );
+      },
+    ),
+  );
+}
+
+Widget _whatsNearby() {
+  return Container(
+    margin: EdgeInsets.only(left: 15, right: 15, bottom: 19),
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(10),
+      boxShadow: [
+        new BoxShadow( 
+          color: Colors.grey[300],
+          offset: new Offset(0.0, 10.0), 
+          blurRadius: 10.0,
+          spreadRadius: 1.0
+        )
+      ],
+    ),
+    child: Column(
+      children: <Widget> [
+        Container(
+          height: 200,
+          alignment: Alignment.center,
+          decoration: ShapeDecoration(
+            shadows: [
+              new BoxShadow(
+                color: Colors.grey[300],
+                offset: new Offset(0.0, 10.0), 
+                blurRadius: 10.0,
+                spreadRadius: 1.0
+              )
+            ],
+            image: DecorationImage(
+              image: ExactAssetImage(
+                'assets/images/Ramen.jpg'
+              ),
+              fit: BoxFit.cover
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadiusDirectional.circular(10)
+            )
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.only(left: 10, top: 6),
+          alignment: Alignment.bottomLeft,
+          child: Text(
+            'Sushi Tien',
+            style: TextStyle(
+              fontFamily: 'Futura Medium',
+              color: Colors.black,
+              fontSize: 15,
+            ),
+          ),
+        ),
+      ]
+    ),
+  );
 }

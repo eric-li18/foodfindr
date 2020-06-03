@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:foodfindr/screens/foodfinding/food_ethnic_selections.dart';
 import 'package:foodfindr/screens/foodfinding/food_options_selections.dart';
 
 class SlideUpPanelTab extends StatelessWidget {
@@ -24,13 +25,13 @@ class SlideUpPanelTab extends StatelessWidget {
           // isScrollable: true,
         ),
         body: TabBarView(
-          // These are the contents of the tab views, below the tabs.
-          children: _tabs.map((Tab tab) {
-            return Center(
-              child: FoodOptionsSelections(),
-            );
-          }).toList(),
-        ),
+            // These are the contents of the tab views, below the tabs.
+            children: [
+              FoodOptionsSelections(),
+              Center(
+                child: FoodEthnicSelections(),
+              )
+            ]),
       ),
     );
   }

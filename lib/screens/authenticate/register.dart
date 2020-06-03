@@ -41,9 +41,8 @@ class _RegisterState extends State<Register> {
                       fontFamily: 'Futura Medium',
                     ),
                   ),
-                  Padding(padding: EdgeInsets.only(top: 30)),
+                  Padding(padding: EdgeInsets.only(top: 50)),
                   SizedBox(
-                    height: 370,
                     child: _emailAndPasswordForms(),
                   ),
                   SizedBox(height: 7.0),
