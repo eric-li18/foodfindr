@@ -1,17 +1,34 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:geolocator/geolocator.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 class Requests {
+
+  const API_HOST = "https://api.yelp.com";
+  const SEARCH_PATH = "/v3/businesses/search";
+  const BUSINESS_PATH= "/v3/businesses/";
+
   String _key;
-  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-  Position _currentPosition;
-  String _currentAddress;
+  var geolocator = Geolocator();
+  var locationOptions = LocationOptions(accuracy: LocationAccuracy.high, distanceFilter: 10);
+  Position position;
 
   Requests() {
     _setKey();
+  }
+
+  StreamSubscription<Position> positionStream = geolocator.getPositionStream(locationOptions).listen(
+      (Position p) {
+          print(p == null ? 'Unknown' : p.latitude.toString() + ', ' + p.longitude.toString());
+          position = p;
+      });
+
+  Future<Map<String,dynamic>> _request(String path, String urlParams) async {
+    let headers = {"Authorization": "Bearer " + _key};
+    let url = API_HOST + path + urlParams;
+    var response = await http.get(url, headers: headers);
+    return json.decode(response.body);
   }
 
   _setKey() async {
@@ -22,34 +39,44 @@ class Requests {
     _key = _remoteConfig.getValue('YELP_API_KEY').asString();
   }
 
-  _getCurrentLocation() {
-    final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+  //_getCurrentLocation() {
+  //  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
 
-    geolocator
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
-        .then((Position position) {
-      _currentPosition = position;
-    }).catchError((e) {
-      print(e);
+  //  geolocator
+  //      .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+  //      .then((Position position) {
+  //    _currentPosition = position;
+  //  }).catchError((e) {
+  //    print(e);
+  //  });
+  //}
+
+  //_getAddressFromLatLng() async {
+  //  try {
+  //    List<Placemark> p = await geolocator.placemarkFromCoordinates(
+  //        _currentPosition.latitude, _currentPosition.longitude);
+
+  //    Placemark place = p[0];
+
+  //    _currentAddress =
+  //        "${place.locality}, ${place.postalCode}, ${place.country}";
+  //  } catch (e) {
+  //    print(e);
+  //  }
+  //}
+
+  Future<Map<String,dynamic>> getRestaurants([int limit, String term, int radius= 5000, String price]) async {
+    let urlParams = "?radius=" + radius + "&latitude=" + position.latitude + "&longitude=" + position.longitude;
+    ({'limit': limit, 'term': term, 'price': price}).forEach((key, value) {
+        if(value != null) urlParams += "&" + value;
     });
-  }
-
-  _getAddressFromLatLng() async {
+    let response = null;
     try {
-      List<Placemark> p = await geolocator.placemarkFromCoordinates(
-          _currentPosition.latitude, _currentPosition.longitude);
-
-      Placemark place = p[0];
-
-      _currentAddress =
-          "${place.locality}, ${place.postalCode}, ${place.country}";
-    } catch (e) {
-      print(e);
+        response = _request(BUSINESS_PATH + search, urlParams);
+        if (response == null) throw new FormatException();
+    } catchError (e){
+        print(e);
     }
-  }
-
-  Future<Map<String,dynamic>> getRestaurantsNearby() async {
-    var response = await http.get("https://api.yelp.com/v3/businesses/search?latitude=" + _currentPosition.latitude.toString() + "&longitude=" + _currentPosition.longitude.toString() + "&radius=5000&limit=5",headers: {"Authorization": "Bearer " + _key});
-    return json.decode(response.body);
+    return response;
   }
 }
