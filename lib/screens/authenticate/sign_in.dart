@@ -22,6 +22,7 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       backgroundColor: Colors.grey[100],
       body: Container(
         padding: EdgeInsets.only(top: 100.0, left: 30.0, right: 30.0),
@@ -56,23 +57,27 @@ class _SignInState extends State<SignIn> {
               SizedBox(height: 3.0),
               Container(
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget> [
-                    _barButton("Sign in", () async {
-                      if (_formKey.currentState.validate()) {
-                        dynamic result =
-                            await _auth.signInWithEmail(email, password);
-                        if (result == null) {
-                          setState(() {
-                            error = "Please supply a valid email";
-                          });
+                    Expanded(
+                      child: _barButton("Sign in", () async {
+                        if (_formKey.currentState.validate()) {
+                          dynamic result =
+                              await _auth.signInWithEmail(email, password);
+                          if (result == null) {
+                            setState(() {
+                              error = "Please supply a valid email";
+                            });
+                          }
                         }
-                      }
-                    }),
+                      }),
+                    ),
                     Padding(padding: EdgeInsets.symmetric(horizontal: 15)),
-                    _barButton("Register", () {
-                      widget.toggleSignedIn();
-                    }),
+                    Expanded(
+                      child: _barButton("Register", () {
+                        widget.toggleSignedIn();
+                      }),
+                    ),
                   ]
                 ),
               ),
@@ -190,7 +195,7 @@ class _SignInState extends State<SignIn> {
 
   ButtonTheme _barButton(String text, Function onPressed) {
     return ButtonTheme(
-      minWidth: 150.0,
+      minWidth: 100.0,
       child: Container(
         decoration: BoxDecoration(
           color: Colors.grey[100],

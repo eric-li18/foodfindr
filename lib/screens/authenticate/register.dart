@@ -22,6 +22,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
         backgroundColor: Colors.grey[100],
         body: Container(
           padding: EdgeInsets.only(top: 100.0, left: 30.0, right: 30.0),

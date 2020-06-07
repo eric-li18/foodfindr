@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                         padding: EdgeInsets.only(left: 15),
                         alignment: Alignment.bottomLeft,
                         child: Text(
-                          'There\'re 120 resturants nearby',
+                          'There\'re 120 restaurants nearby',
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             fontFamily: 'Futura Medium',
