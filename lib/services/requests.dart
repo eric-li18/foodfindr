@@ -51,26 +51,15 @@ class Requests {
   //  });
   //}
 
-  //_getAddressFromLatLng() async {
-  //  try {
-  //    List<Placemark> p = await geolocator.placemarkFromCoordinates(
-  //        _currentPosition.latitude, _currentPosition.longitude);
-
-  //    Placemark place = p[0];
-
-  //    _currentAddress =
-  //        "${place.locality}, ${place.postalCode}, ${place.country}";
-  //  } catch (e) {
-  //    print(e);
-  //  }
-  //}
-
-  Future<Map<String,dynamic>> getRestaurants([int limit, String term, int radius= 5000, String price]) async {
+  <Map<String,dynamic>> getRestaurants([int limit, String term, int radius= 5000, String price]) {
     let urlParams = "?radius=" + radius + "&latitude=" + position.latitude + "&longitude=" + position.longitude;
-    ({'limit': limit, 'term': term, 'price': price}).forEach((key, value) {
-        if(value != null) urlParams += "&" + value;
-    });
     let response = null;
+    let parameters = [limit, term, price];
+
+    for(let param in parameters) {
+        if(value != null) urlParams += "&" + param;
+    };
+
     try {
         response = _request(BUSINESS_PATH + search, urlParams);
         if (response == null) throw new FormatException();
