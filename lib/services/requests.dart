@@ -7,7 +7,6 @@ class Requests {
 
   const API_HOST = "https://api.yelp.com";
   const SEARCH_PATH = "/v3/businesses/search";
-  const BUSINESS_PATH= "/v3/businesses/";
 
   String _key;
   var geolocator = Geolocator();
@@ -61,7 +60,7 @@ class Requests {
     };
 
     try {
-        response = _request(BUSINESS_PATH + search, urlParams);
+        response = _request(SEARCH_PATH, urlParams);
         if (response == null) throw new FormatException();
     } catchError (e){
         print(e);
