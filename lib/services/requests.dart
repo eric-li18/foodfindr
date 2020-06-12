@@ -38,18 +38,6 @@ class Requests {
     _key = _remoteConfig.getValue('YELP_API_KEY').asString();
   }
 
-  //_getCurrentLocation() {
-  //  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-
-  //  geolocator
-  //      .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
-  //      .then((Position position) {
-  //    _currentPosition = position;
-  //  }).catchError((e) {
-  //    print(e);
-  //  });
-  //}
-
   <Map<String,dynamic>> getRestaurants([int limit, String term, int radius= 5000, String price]) {
     let urlParams = "?radius=" + radius + "&latitude=" + position.latitude + "&longitude=" + position.longitude;
     let response = null;
